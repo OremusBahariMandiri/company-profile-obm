@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
+    <link rel="icon" href="/favicon3.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>PT. Oremus Bahari Mandiri - Professional Maritime Services</title>
 
-    <title>{{ config('app.name', 'Ship Agency') }}</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="PT. Oremus Bahari Mandiri - Leading maritime services company providing ship handling, provision supply, medivac operations, and crew handling across Indonesian ports.">
+    <meta name="keywords" content="maritime services, ship agency, Indonesia ports, ship handling, provision supply, medivac operations">
+    <meta name="author" content="PT. Oremus Bahari Mandiri">
 
-    <!-- Fonts -->
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="PT. Oremus Bahari Mandiri - Professional Maritime Services">
+    <meta property="og:description" content="Leading maritime services company in Indonesia">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset('images/logo.png') }}">
+
+    <!-- Google Fonts - Professional Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon3.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon3.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Theme Meta Tags -->
+    <meta name="theme-color" content="#0B1426">
+    <meta name="msapplication-TileColor" content="#0B1426">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png?v=3">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,703 +41,1073 @@
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom Styles -->
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <!-- PERBAIKAN KHUSUS: CSS untuk tombol carousel kanan -->
     <style>
-        :root {
-            --pastel-blue: #A8D8FF;
-            --dark-blue: #0A3D62;
-            --ocean-green: #3AB795;
-            --light-blue: #E3F2FD;
-            --wave-blue: #64B5F6;
-        }
+ /* OVERRIDE FINAL - MEMAKSA CONTROLS BERFUNGSI */
+ body .carousel-control-prev,
+    body .carousel-control-next,
+    html .carousel-control-prev,
+    html .carousel-control-next {
+        z-index: 99999 !important;
+        pointer-events: all !important;
+        cursor: pointer !important;
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
+    body .carousel-overlay,
+    html .carousel-overlay {
+        pointer-events: none !important;
+    }
 
-        /* Navbar Styles */
-        .navbar {
-            background-color: rgba(10, 61, 98, 0.9) !important;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            padding: 15px 0;
-        }
+    body .carousel-content,
+    html .carousel-content,
+    body .carousel-content *,
+    html .carousel-content * {
+        pointer-events: none !important;
+    }
 
-        .navbar.scrolled {
-            padding: 8px 0;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
+    body .activity-tabs .nav-link,
+    html .activity-tabs .nav-link {
+        z-index: 9999 !important;
+        pointer-events: all !important;
+        cursor: pointer !important;
+    }
 
-        .navbar-brand img {
-            height: 50px;
-            transition: all 0.4s ease;
-        }
+    /* Custom popup styles */
+    .custom-popup .leaflet-popup-content-wrapper {
+        border-radius: 12px !important;
+        box-shadow: 0 8px 30px rgba(11, 20, 38, 0.15) !important;
+        border: 1px solid rgba(56, 178, 172, 0.2) !important;
+    }
 
-        .navbar.scrolled .navbar-brand img {
-            height: 40px;
-        }
+    .custom-tooltip {
+        background: var(--navy-primary) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 500 !important;
+        font-size: 13px !important;
+        padding: 8px 12px !important;
+        box-shadow: 0 4px 15px rgba(11, 20, 38, 0.3) !important;
+    }
 
-        .nav-link {
-            color: white !important;
-            font-weight: 500;
-            position: relative;
-            margin: 0 10px;
-            transition: all 0.3s;
-        }
-
-        .nav-link:before {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--ocean-green);
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover:before {
-            width: 100%;
-        }
-
-        .dropdown-menu {
-            background-color: var(--dark-blue);
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            padding: 15px 0;
-            margin-top: 15px;
-        }
-
-        .dropdown-item {
-            color: white;
-            padding: 10px 25px;
-            transition: all 0.3s;
-        }
-
-        .dropdown-item:hover {
-            background-color: var(--ocean-green);
-            color: white;
-        }
-
-        /* Hero Carousel */
-        .carousel-item {
-            height: 100vh;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .carousel-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(10, 61, 98, 0.7), rgba(10, 61, 98, 0.4));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-content {
-            max-width: 800px;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-
-        .carousel-content h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .carousel-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark-blue);
-            margin-bottom: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title:after {
-            content: "";
-            width: 80px;
-            height: 3px;
-            background-color: var(--ocean-green);
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Director Section */
-        .director-section {
-            background-color: var(--light-blue);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .director-img {
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            position: relative;
-            z-index: 1;
-        }
-
-        .director-img:before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 15px;
-            left: 15px;
-            background-color: var(--ocean-green);
-            border-radius: 10px;
-            z-index: -1;
-        }
-
-        .quote-icon {
-            font-size: 4rem;
-            color: var(--pastel-blue);
-            opacity: 0.5;
-            position: absolute;
-            top: -20px;
-            left: -20px;
-        }
-
-        /* Service Section */
-        .service-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(10, 61, 98, 0.2);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background-color: var(--ocean-green);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: -40px auto 20px;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(58, 183, 149, 0.4);
-        }
-
-        /* Map Section */
-        .map-container {
-            height: 500px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--dark-blue);
-            color: white;
-            padding: 70px 0 0;
-            position: relative;
-        }
-
-        .footer-wave {
-            position: absolute;
-            top: -70px;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-        }
-
-        .footer-wave svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 70px;
-        }
-
-        .footer-wave .shape-fill {
-            fill: var(--dark-blue);
-        }
-
-        .footer h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer h4:after {
-            content: "";
-            position: absolute;
-            width: 50px;
-            height: 2px;
-            background-color: var(--ocean-green);
-            bottom: 0;
-            left: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            color: #e0e0e0;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: var(--ocean-green);
-            transform: translateX(5px);
-        }
-
-        .footer-contact li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .footer-contact i {
-            color: var(--ocean-green);
-            margin-right: 15px;
-            font-size: 1.2rem;
-            margin-top: 5px;
-        }
-
-        .footer-bottom {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 20px 0;
-            margin-top: 50px;
-            text-align: center;
-        }
-
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            margin: 0 5px;
-            transition: all 0.3s;
-        }
-
-        .social-icons a:hover {
-            background-color: var(--ocean-green);
-            transform: translateY(-5px);
-        }
-
-        /* Wave Animation */
-        .wave-animation {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            overflow: hidden;
-        }
-
-        .wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' class='shape-fill'%3E%3C/path%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' class='shape-fill'%3E%3C/path%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' class='shape-fill'%3E%3C/path%3E%3C/svg%3E") repeat-x;
-            animation: wave 15s linear infinite;
-            transform-origin: center bottom;
-        }
-
-        .wave-1 {
-            z-index: 15;
-            opacity: 1;
-            animation-delay: 0s;
-            animation-duration: 20s;
-        }
-
-        .wave-2 {
-            z-index: 10;
-            opacity: 0.5;
-            animation-delay: -5s;
-            animation-duration: 15s;
-            bottom: 10px;
-        }
-
-        .wave-3 {
-            z-index: 5;
-            opacity: 0.2;
-            animation-delay: -2s;
-            animation-duration: 10s;
-            bottom: 15px;
-        }
-
-        .wave .shape-fill {
-            fill: var(--wave-blue);
-        }
-
-        @keyframes wave {
-            0% {
-                transform: translateX(0) translateZ(0) scaleY(1);
-            }
-            50% {
-                transform: translateX(-25%) translateZ(0) scaleY(0.8);
-            }
-            100% {
-                transform: translateX(-50%) translateZ(0) scaleY(1);
-            }
-        }
-
-        /* Ship Animation */
-        .ship-container {
-            position: absolute;
-            bottom: 70px;
-            left: -150px;
-            width: 120px;
-            animation: shipSailing 30s linear infinite;
-            z-index: 20;
-        }
-
-        @keyframes shipSailing {
-            0% {
-                transform: translateX(0) rotate(0deg);
-            }
-            50% {
-                transform: translateX(calc(100vw + 150px)) rotate(2deg);
-            }
-            50.1% {
-                transform: translateX(calc(100vw + 150px)) rotate(2deg) scaleX(-1);
-            }
-            99.9% {
-                transform: translateX(0) rotate(0deg) scaleX(-1);
-            }
-            100% {
-                transform: translateX(0) rotate(0deg) scaleX(1);
-            }
-        }
-
-        /* Floating Animation */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .carousel-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .navbar-collapse {
-                background-color: var(--dark-blue);
-                padding: 20px;
-                border-radius: 10px;
-                margin-top: 15px;
-            }
-
-            .director-img:before {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .carousel-content h1 {
-                font-size: 2rem;
-            }
-
-            .carousel-content p {
-                font-size: 1rem;
-            }
-
-            .section {
-                padding: 70px 0;
-            }
-        }
+    .info-control {
+        pointer-events: auto !important;
+    }
     </style>
 </head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ Vite::asset('resources/assets/images/obmlogo.png') }}" alt="Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About Us</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Our Services
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                            <li><a class="dropdown-item" href="{{ route('services.ship-handling') }}">Ship Handling</a></li>
-                            <li><a class="dropdown-item" href="{{ route('services.provision-supply') }}">Provision Supply</a></li>
-                            <li><a class="dropdown-item" href="{{ route('services.medivac-operation') }}">Medivac Operation</a></li>
-                            <li><a class="dropdown-item" href="{{ route('services.crew-handling') }}">Crew Handling</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('customers') ? 'active' : '' }}" href="{{ route('customers') }}">Our Customers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('branches') ? 'active' : '' }}" href="{{ route('branches') }}">Our Branches</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('qhse') ? 'active' : '' }}" href="{{ route('qhse') }}">QHSE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}" href="{{ route('news') }}">News</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}" href="{{ route('login') }}">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Main Content -->
+<body>
+    @include('layouts.navbar')
+
     <main>
         @yield('content')
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-wave">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" class="shape-fill"></path>
-            </svg>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-5">
-                    <img src="{{ Vite::asset('resources/assets/images/obmlogo.png') }}" alt="Logo" class="mb-4" style="height: 60px;">
-                    <p>Your trusted partner in maritime logistics and ship agency services. We deliver excellence in every aspect of maritime operations.</p>
-                    <div class="social-icons mt-4">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-5">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links list-unstyled">
-                        <li><a href="{{ route('home') }}"><i class="fas fa-chevron-right me-2"></i> Home</a></li>
-                        <li><a href="{{ route('about') }}"><i class="fas fa-chevron-right me-2"></i> About Us</a></li>
-                        <li><a href="{{ route('services.ship-handling') }}"><i class="fas fa-chevron-right me-2"></i> Services</a></li>
-                        <li><a href="{{ route('customers') }}"><i class="fas fa-chevron-right me-2"></i> Customers</a></li>
-                        <li><a href="{{ route('contact') }}"><i class="fas fa-chevron-right me-2"></i> Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <h4>Our Services</h4>
-                    <ul class="footer-links list-unstyled">
-                        <li><a href="{{ route('services.ship-handling') }}"><i class="fas fa-ship me-2"></i> Ship Handling</a></li>
-                        <li><a href="{{ route('services.provision-supply') }}"><i class="fas fa-box me-2"></i> Provision Supply</a></li>
-                        <li><a href="{{ route('services.medivac-operation') }}"><i class="fas fa-ambulance me-2"></i> Medivac Operation</a></li>
-                        <li><a href="{{ route('services.crew-handling') }}"><i class="fas fa-users me-2"></i> Crew Handling</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <h4>Contact Us</h4>
-                    <ul class="footer-contact list-unstyled">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>123 Maritime Street, Harbor City, 12345</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone-alt"></i>
-                            <span>+1 234 567 8901</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>info@shipagency.com</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <span>Mon-Fri: 8:00 AM - 6:00 PM</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p class="mb-0">&copy; {{ date('Y') }} Ship Agency. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Ship Animation -->
-    <div class="ship-container">
-        <svg width="120" height="60" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M416 320H96C43.06 320 0 363.06 0 416V480H512V416C512 363.06 468.94 320 416 320Z" fill="#0A3D62"/>
-            <path d="M512 416V480H0V416C0 363.06 43.06 320 96 320H416C468.94 320 512 363.06 512 416Z" fill="#0A3D62"/>
-            <path d="M400 192H240V96H400V192Z" fill="#3AB795"/>
-            <path d="M400 96H240V64C240 46.33 254.33 32 272 32H368C385.67 32 400 46.33 400 64V96Z" fill="#A8D8FF"/>
-            <path d="M400 192V416H240V192H400Z" fill="#0A3D62"/>
-            <path d="M272 160C276.418 160 280 156.418 280 152C280 147.582 276.418 144 272 144C267.582 144 264 147.582 264 152C264 156.418 267.582 160 272 160Z" fill="white"/>
-            <path d="M336 160C340.418 160 344 156.418 344 152C344 147.582 340.418 144 336 144C331.582 144 328 147.582 328 152C328 156.418 331.582 160 336 160Z" fill="white"/>
-        </svg>
-    </div>
-
-    <!-- JavaScript Libraries -->
+    <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" defer></script>
 
-    <!-- Custom JavaScript -->
+    <!-- jQuery and Slick Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- PERBAIKAN KHUSUS: JavaScript untuk tombol carousel kanan -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize AOS
+        // Immediate fix untuk carousel buttons
+        (function() {
+            let attempts = 0;
+            const maxAttempts = 10;
+
+            function fixCarouselButtons() {
+                attempts++;
+                console.log(`Attempt ${attempts} to fix carousel buttons...`);
+
+                const heroCarousel = document.querySelector('#heroCarousel');
+                if (!heroCarousel && attempts < maxAttempts) {
+                    setTimeout(fixCarouselButtons, 500);
+                    return;
+                }
+
+                if (!heroCarousel) {
+                    console.error('Carousel not found after maximum attempts');
+                    return;
+                }
+
+                // Get or create carousel instance
+                let carousel;
+                try {
+                    carousel = bootstrap.Carousel.getOrCreateInstance(heroCarousel);
+                } catch (e) {
+                    console.error('Failed to get carousel instance:', e);
+                    return;
+                }
+
+                // Fix tombol kanan (next button)
+                const nextButton = heroCarousel.querySelector('.carousel-control-next');
+                if (nextButton) {
+                    console.log('Fixing next button...');
+
+                    // Remove all existing event listeners by cloning
+                    const newNextButton = nextButton.cloneNode(true);
+                    nextButton.parentNode.replaceChild(newNextButton, nextButton);
+
+                    // Apply aggressive CSS fixes
+                    Object.assign(newNextButton.style, {
+                        position: 'absolute',
+                        zIndex: '999',
+                        pointerEvents: 'auto',
+                        cursor: 'pointer',
+                        right: '40px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: '60px',
+                        height: '60px',
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        borderRadius: '50%',
+                        backdropFilter: 'blur(10px)',
+                        opacity: '0.8',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    });
+
+                    // Multiple event handlers
+                    const handleNext = function(e) {
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        console.log('Next button triggered!');
+
+                        // Visual feedback
+                        newNextButton.style.background = 'rgba(255, 255, 255, 0.3)';
+                        newNextButton.style.transform = 'translateY(-50%) scale(1.1)';
+
+                        // Trigger next slide
+                        carousel.next();
+
+                        // Reset visual
+                        setTimeout(() => {
+                            newNextButton.style.background = 'rgba(255, 255, 255, 0.1)';
+                            newNextButton.style.transform = 'translateY(-50%)';
+                        }, 200);
+                    };
+
+                    // Add multiple event types
+                    ['click', 'touchstart', 'mousedown'].forEach(eventType => {
+                        newNextButton.addEventListener(eventType, handleNext, {
+                            capture: true,
+                            passive: false
+                        });
+                    });
+
+                    // Hover effects
+                    newNextButton.addEventListener('mouseenter', function() {
+                        this.style.opacity = '1';
+                        this.style.background = 'rgba(255, 255, 255, 0.2)';
+                    });
+
+                    newNextButton.addEventListener('mouseleave', function() {
+                        this.style.opacity = '0.8';
+                        this.style.background = 'rgba(255, 255, 255, 0.1)';
+                    });
+
+                    console.log('Next button fixed successfully');
+                }
+
+                // Fix tombol kiri (prev button) untuk konsistensi
+                const prevButton = heroCarousel.querySelector('.carousel-control-prev');
+                if (prevButton) {
+                    console.log('Fixing prev button...');
+
+                    const newPrevButton = prevButton.cloneNode(true);
+                    prevButton.parentNode.replaceChild(newPrevButton, prevButton);
+
+                    Object.assign(newPrevButton.style, {
+                        position: 'absolute',
+                        zIndex: '999',
+                        pointerEvents: 'auto',
+                        cursor: 'pointer',
+                        left: '40px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: '60px',
+                        height: '60px',
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        borderRadius: '50%',
+                        backdropFilter: 'blur(10px)',
+                        opacity: '0.8',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    });
+
+                    const handlePrev = function(e) {
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        console.log('Prev button triggered!');
+
+                        newPrevButton.style.background = 'rgba(255, 255, 255, 0.3)';
+                        newPrevButton.style.transform = 'translateY(-50%) scale(1.1)';
+
+                        carousel.prev();
+
+                        setTimeout(() => {
+                            newPrevButton.style.background = 'rgba(255, 255, 255, 0.1)';
+                            newPrevButton.style.transform = 'translateY(-50%)';
+                        }, 200);
+                    };
+
+                    ['click', 'touchstart', 'mousedown'].forEach(eventType => {
+                        newPrevButton.addEventListener(eventType, handlePrev, {
+                            capture: true,
+                            passive: false
+                        });
+                    });
+
+                    newPrevButton.addEventListener('mouseenter', function() {
+                        this.style.opacity = '1';
+                        this.style.background = 'rgba(255, 255, 255, 0.2)';
+                    });
+
+                    newPrevButton.addEventListener('mouseleave', function() {
+                        this.style.opacity = '0.8';
+                        this.style.background = 'rgba(255, 255, 255, 0.1)';
+                    });
+                }
+
+                // Test functions
+                window.testCarouselButtons = function() {
+                    console.log('Testing carousel buttons...');
+                    const nextBtn = document.querySelector('.carousel-control-next');
+                    const prevBtn = document.querySelector('.carousel-control-prev');
+
+                    if (nextBtn) {
+                        console.log('Next button found, triggering click...');
+                        nextBtn.click();
+                    }
+
+                    setTimeout(() => {
+                        if (prevBtn) {
+                            console.log('Prev button found, triggering click...');
+                            prevBtn.click();
+                        }
+                    }, 2000);
+                };
+
+                console.log('Carousel buttons fix completed');
+            }
+
+            // Start fixing process
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', fixCarouselButtons);
+            } else {
+                fixCarouselButtons();
+            }
+        })();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('DOM loaded, initializing scripts...');
+
+            // Initialize AOS with improved settings
             AOS.init({
                 duration: 800,
-                easing: 'ease-in-out',
-                once: true
+                easing: 'ease-out-cubic',
+                once: true,
+                offset: 100,
+                delay: 100
             });
 
-            // Navbar scroll effect
+            // Enhanced Slick Carousel for clients
+            $('.clients-carousel').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                dots: true,
+                arrows: false,
+                infinite: true,
+                pauseOnHover: true,
+                pauseOnFocus: true,
+                accessibility: true,
+                responsive: [
+                    {
+                        breakpoint: 1400,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                            dots: true
+                        }
+                    }
+                ]
+            });
+
+            // Enhanced Navbar scroll effect
             const navbar = document.querySelector('.navbar');
-            window.addEventListener('scroll', function() {
+            let lastScrollY = window.scrollY;
+
+            function updateNavbar() {
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
                 }
+                lastScrollY = window.scrollY;
+            }
+
+            window.addEventListener('scroll', updateNavbar, { passive: true });
+
+            // Enhanced smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Close mobile navbar if open
+                        const navbarCollapse = document.querySelector('.navbar-collapse');
+                        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                            const bsCollapse = new bootstrap.Collapse(navbarCollapse, { hide: true });
+                        }
+
+                        // Smooth scroll to target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // PERBAIKAN: Enhanced Activity Tabs
+            const activityTabs = document.querySelectorAll('#activitiesTabs .nav-link');
+            const activityTabPanes = document.querySelectorAll('#activitiesTabContent .tab-pane');
+
+            console.log('Activity tabs found:', activityTabs.length);
+
+            function activateTab(clickedTab) {
+                const targetId = clickedTab.getAttribute('data-bs-target');
+                console.log(`Activating tab with target: ${targetId}`);
+
+                // Remove active class from all tabs and panes
+                activityTabs.forEach(t => t.classList.remove('active'));
+                activityTabPanes.forEach(pane => {
+                    pane.classList.remove('show', 'active');
+                });
+
+                // Add active class to clicked tab
+                clickedTab.classList.add('active');
+
+                // Show corresponding tab pane
+                const targetPane = document.querySelector(targetId);
+                if (targetPane) {
+                    targetPane.classList.add('show', 'active');
+                    console.log(`Tab pane ${targetId} activated successfully`);
+
+                    // Visual feedback
+                    clickedTab.style.transform = 'translateY(-3px)';
+                    setTimeout(() => {
+                        clickedTab.style.transform = 'translateY(-2px)';
+                    }, 200);
+                } else {
+                    console.error(`Target pane ${targetId} not found`);
+                }
+            }
+
+            activityTabs.forEach((tab, index) => {
+                ['click', 'touchstart'].forEach(eventType => {
+                    tab.addEventListener(eventType, function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log(`Tab ${index} triggered with event:`, eventType);
+                        activateTab(this);
+                    }, { passive: false });
+                });
+
+                tab.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        activateTab(this);
+                    }
+                });
+            });
+
+            // Initialize map with delay for better loading
+            setTimeout(function () {
+                initMap();
+            }, 200);
+
+            // Enhanced counter animation
+            const counters = document.querySelectorAll('.counter');
+            const observerOptions = {
+                threshold: 0.7,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+
+            function animateCounter(counter) {
+                const target = parseInt(counter.innerText.replace(/[^0-9]/g, ''));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.innerText = Math.floor(current) + (counter.dataset.suffix || '');
+                }, 20);
+            }
+
+            // Enhanced WhatsApp Chat Widget
+            initWhatsAppWidget();
+
+            // Enhanced scroll-triggered animations
+            const scrollElements = document.querySelectorAll('[data-scroll]');
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+
+            const displayScrollElement = (element) => {
+                element.classList.add('scrolled');
+            };
+
+            const hideScrollElement = (element) => {
+                element.classList.remove('scrolled');
+            };
+
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25)) {
+                        displayScrollElement(el);
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', handleScrollAnimation, { passive: true });
+
+            // Enhanced branch card hover effects
+            const branchCards = document.querySelectorAll('.branch-card');
+            branchCards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-8px)';
+                    this.style.boxShadow = '0 15px 40px rgba(11, 20, 38, 0.18)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 20px rgba(11, 20, 38, 0.08)';
+                });
+            });
+
+            // Enhanced performance optimizations
+            const debounce = (func, wait) => {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            };
+
+            const throttle = (func, limit) => {
+                let lastFunc;
+                let lastRan;
+                return function() {
+                    const context = this;
+                    const args = arguments;
+                    if (!lastRan) {
+                        func.apply(context, args);
+                        lastRan = Date.now();
+                    } else {
+                        clearTimeout(lastFunc);
+                        lastFunc = setTimeout(function() {
+                            if ((Date.now() - lastRan) >= limit) {
+                                func.apply(context, args);
+                                lastRan = Date.now();
+                            }
+                        }, limit - (Date.now() - lastRan));
+                    }
+                }
+            };
+
+            // Optimized scroll handling
+            window.addEventListener('scroll', throttle(function () {
+                AOS.refresh();
+                if (window.shipAgencyMap) {
+                    window.shipAgencyMap.invalidateSize();
+                }
+            }, 100), { passive: true });
+
+            // Enhanced accessibility
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Close WhatsApp widget if open
+                    const chatBox = document.querySelector('.whatsapp-chat-box');
+                    if (chatBox && chatBox.classList.contains('active')) {
+                        chatBox.classList.remove('active');
+                    }
+                }
+            });
+
+            // Improved loading states
+            window.addEventListener('load', function() {
+                document.body.classList.add('loaded');
+                console.log('Page fully loaded');
             });
         });
 
-        // Google Maps
-        function initMap() {
-            // Default coordinates (Jakarta, Indonesia)
-            const coordinates = { lat: -6.2088, lng: 106.8456 };
+        // Enhanced WhatsApp Widget Functionality
+        function initWhatsAppWidget() {
+            const whatsappButton = document.querySelector('.whatsapp-button');
+            const chatBox = document.querySelector('.whatsapp-chat-box');
+            const closeButton = document.querySelector('.chat-header-close');
+            const chatInput = document.querySelector('.chat-input');
+            const sendButton = document.querySelector('.chat-send');
+            const chatMessages = document.getElementById('chat-messages');
+            const quickReplyButtons = document.querySelectorAll('.quick-reply-button');
 
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 14,
-                center: coordinates,
-                styles: [
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#A8D8FF"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "landscape",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#E3F2FD"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#ffffff"
-                            }
-                        ]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#3AB795"
-                            }
-                        ]
+            if (!whatsappButton || !chatBox) return;
+
+            // Open/close chat box
+            whatsappButton.addEventListener('click', function () {
+                chatBox.classList.toggle('active');
+                const badge = whatsappButton.querySelector('.notification-badge');
+                if (badge) badge.style.display = 'none';
+
+                if (chatBox.classList.contains('active')) {
+                    setTimeout(() => {
+                        if (chatInput) chatInput.focus();
+                    }, 300);
+                }
+
+                scrollChatToBottom();
+            });
+
+            if (closeButton) {
+                closeButton.addEventListener('click', function () {
+                    chatBox.classList.remove('active');
+                });
+            }
+
+            // Send message functionality
+            function sendMessage(text) {
+                if (!text.trim() || !chatMessages) return;
+
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'message message-sent';
+                userMsg.innerHTML = `
+                    <div>${escapeHtml(text)}</div>
+                    <div class="message-time">${getCurrentTime()}</div>
+                `;
+                chatMessages.appendChild(userMsg);
+
+                if (chatInput) {
+                    chatInput.value = '';
+                    chatInput.style.height = 'auto';
+                }
+
+                scrollChatToBottom();
+                showTypingIndicator();
+
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    respondToMessage(text);
+                }, 1200);
+            }
+
+            // Enhanced bot responses with better context handling
+            function respondToMessage(text) {
+                if (!chatMessages) return;
+
+                let response = '';
+                let quickReplies = [];
+                const lowerText = text.toLowerCase();
+
+                // Improved response logic
+                if (lowerText.includes('service') || lowerText.includes('what you do')) {
+                    response = "We offer comprehensive maritime services including ship handling, provision supply, medivac operations, and crew handling. Which service interests you?";
+                    quickReplies = ['Ship Handling', 'Provision Supply', 'Medivac', 'Crew Handling'];
+                } else if (lowerText.includes('ship handling')) {
+                    response = "Our ship handling services include acting as general agents, local agents, and owner protecting agents for vessels including tankers, bulk cargo, cruise ships, and offshore vessels.";
+                    quickReplies = ['Other Services', 'Contact Info', 'Speak to Agent'];
+                } else if (lowerText.includes('provision')) {
+                    response = "We provide comprehensive provision supply services including food, fresh water, bunker fuel, and essential supplies to vessels, even when anchored.";
+                    quickReplies = ['Other Services', 'Contact Info', 'Speak to Agent'];
+                } else if (lowerText.includes('medivac') || lowerText.includes('medical')) {
+                    response = "Our medivac operations support P&I clubs and ship owners in emergencies, including sick crew management, deceased crew handling, and medical evacuations.";
+                    quickReplies = ['Other Services', 'Contact Info', 'Speak to Agent'];
+                } else if (lowerText.includes('crew')) {
+                    response = "We handle all crew management aspects including crew changes, visa processing, work permits, and repatriation for domestic and foreign crew.";
+                    quickReplies = ['Other Services', 'Contact Info', 'Speak to Agent'];
+                } else if (lowerText.includes('contact') || lowerText.includes('office')) {
+                    response = "Main Office: Harbour Nine Business District Block C-16, Jln. Gresik no 16, Surabaya 60177. Phone: 0313557115. Email: commercial@oremus.co.id";
+                    quickReplies = ['Branch Offices', 'Services', 'Speak to Agent'];
+                } else if (lowerText.includes('port') || lowerText.includes('branch')) {
+                    response = "We operate in major Indonesian ports: Surabaya, Gresik, Rembang, Lamongan, Balikpapan, Telaga Biru Madura, Samboja, Bawean, Samarinda, Probolinggo, Makassar, Bontang, and Tanjung Priok.";
+                    quickReplies = ['Main Office', 'Services', 'Speak to Agent'];
+                } else if (lowerText.includes('agent') || lowerText.includes('human')) {
+                    response = "I'll connect you with our team. Click below to start a WhatsApp chat with our representatives.";
+                    quickReplies = ['Connect via WhatsApp'];
+                } else if (lowerText.includes('connect') || lowerText.includes('whatsapp')) {
+                    window.open('https://wa.me/6285186841616', '_blank');
+                    response = "WhatsApp chat opened. If it didn't work, please contact us at +62 851-8684-1616";
+                    quickReplies = ['Other Questions'];
+                } else if (lowerText.includes('hello') || lowerText.includes('hi')) {
+                    response = "Hello! Welcome to PT. Oremus Bahari Mandiri. How can I assist you today?";
+                    quickReplies = ['Services', 'Contact Info', 'Ports Coverage', 'Talk to Agent'];
+                } else if (lowerText.includes('thank')) {
+                    response = "You're welcome! Is there anything else I can help you with?";
+                    quickReplies = ['Services', 'Contact Info', 'Talk to Agent'];
+                } else if (lowerText.includes('bye') || lowerText.includes('no thanks')) {
+                    response = "Thank you for contacting PT. Oremus Bahari Mandiri. Have a great day!";
+                } else {
+                    response = "I'd be happy to help! Please choose from the options below or ask about our maritime services.";
+                    quickReplies = ['Services', 'Contact Info', 'Ports Coverage', 'Talk to Agent'];
+                }
+
+                addBotMessage(response, quickReplies);
+            }
+
+            function addBotMessage(response, quickReplies = []) {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message message-received';
+                botMsg.innerHTML = `
+                    <div>${escapeHtml(response)}</div>
+                    <div class="message-time">${getCurrentTime()}</div>
+                `;
+                chatMessages.appendChild(botMsg);
+
+                // Add quick replies if any
+                if (quickReplies.length > 0) {
+                    const quickRepliesDiv = document.createElement('div');
+                    quickRepliesDiv.className = 'quick-replies';
+
+                    quickReplies.forEach(reply => {
+                        const button = document.createElement('button');
+                        button.className = 'quick-reply-button';
+                        button.textContent = reply;
+                        button.addEventListener('click', function () {
+                            sendMessage(this.textContent);
+                            this.parentElement.remove();
+                        });
+                        quickRepliesDiv.appendChild(button);
+                    });
+
+                    chatMessages.appendChild(quickRepliesDiv);
+                }
+
+                scrollChatToBottom();
+            }
+
+            // Send button and enter key events
+            if (sendButton && chatInput) {
+                sendButton.addEventListener('click', function () {
+                    sendMessage(chatInput.value);
+                });
+
+                chatInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage(this.value);
                     }
-                ]
+                });
+
+                // Auto-resize textarea
+                chatInput.addEventListener('input', function () {
+                    this.style.height = 'auto';
+                    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+                });
+            }
+
+            // Quick reply buttons
+            quickReplyButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    sendMessage(this.textContent);
+                });
             });
 
-            const marker = new google.maps.Marker({
-                position: coordinates,
-                map: map,
-                animation: google.maps.Animation.DROP,
-                title: "Ship Agency Headquarters"
-            });
+            // Helper functions
+            function showTypingIndicator() {
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'message message-received typing-indicator-container';
+                typingIndicator.innerHTML = `
+                    <div class="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                `;
+                chatMessages.appendChild(typingIndicator);
+                scrollChatToBottom();
+            }
 
-            const infoWindow = new google.maps.InfoWindow({
-                content: "<strong>Ship Agency Headquarters</strong><br>123 Maritime Street<br>Harbor City, 12345"
-            });
+            function removeTypingIndicator() {
+                const typingIndicator = document.querySelector('.typing-indicator-container');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
 
-            marker.addListener("click", () => {
-                infoWindow.open(map, marker);
+            function scrollChatToBottom() {
+                if (chatMessages) {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }
+
+            function getCurrentTime() {
+                const now = new Date();
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12;
+                hours = hours ? hours : 12;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                return hours + ':' + minutes + ' ' + ampm;
+            }
+
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+        }
+
+        // Enhanced Map Initialization
+        function initMap() {
+            const mapContainer = document.getElementById('map');
+            if (!mapContainer) {
+                console.error('Map container not found');
+                return;
+            }
+
+            mapContainer.style.minHeight = "600px";
+
+            try {
+                // Initialize map with improved settings
+                const map = L.map('map', {
+                    scrollWheelZoom: false,
+                    zoomControl: false,
+                    attributionControl: true
+                }).setView([-2.5489, 118.0149], 5);
+
+                // Store map reference globally
+                window.shipAgencyMap = map;
+
+                // Enhanced tile layer
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 18,
+                    minZoom: 4,
+                }).addTo(map);
+
+                // Custom icon function
+                const createCustomIcon = (color, isMain = false) => {
+                    return L.divIcon({
+                        className: 'custom-div-icon',
+                        html: `<div style="
+                            background: linear-gradient(135deg, ${color} 0%, ${isMain ? '#D69E2E' : '#2C7A7B'} 100%);
+                            width: ${isMain ? 35 : 30}px;
+                            height: ${isMain ? 35 : 30}px;
+                            border-radius: 50%;
+                            border: 3px solid white;
+                            box-shadow: 0 4px 15px rgba(11, 20, 38, 0.3);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: relative;
+                        ">
+                            <i class="fas fa-anchor" style="color: white; font-size: ${isMain ? 16 : 14}px;"></i>
+                            ${isMain ? '<div style="position: absolute; top: -8px; right: -8px; width: 20px; height: 20px; background: #D69E2E; border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center;"><i class="fas fa-star" style="color: white; font-size: 8px;"></i></div>' : ''}
+                        </div>`,
+                        iconSize: [isMain ? 35 : 30, isMain ? 35 : 30],
+                        iconAnchor: [isMain ? 17 : 15, isMain ? 17 : 15]
+                    });
+                };
+
+                // Enhanced branch office locations (using original data but with improved styling)
+                const branchOffices = [
+                    {
+                        coords: [-7.231826874003529, 112.72712398431823],
+                        title: "Main Office - Surabaya",
+                        content: `
+                            <div style="padding: 15px; min-width: 280px; font-family: 'Inter', sans-serif;">
+                                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0B1426 0%, #D69E2E 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
+                                        <i class="fas fa-building" style="color: white; font-size: 16px;"></i>
+                                    </div>
+                                    <div>
+                                        <h6 style="color: #0B1426; margin: 0; font-weight: 600; font-size: 16px;">Main Office</h6>
+                                        <p style="color: #38B2AC; margin: 0; font-size: 14px; font-weight: 500;">Surabaya</p>
+                                    </div>
+                                </div>
+                                <div style="background: linear-gradient(135deg, #F7FAFC 0%, #E2E8F0 100%); padding: 12px; border-radius: 8px; margin-bottom: 10px;">
+                                    <p style="margin: 0; font-size: 14px; color: #4A5568; line-height: 1.5;">
+                                        <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 8px;"></i>
+                                        Harbour Nine Business District Block C-16, Jln. Gresik no 16, Surabaya 60177
+                                    </p>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <a href="tel:0313557115" style="flex: 1; background: #38B2AC; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; text-align: center; font-size: 12px; font-weight: 600;">
+                                        <i class="fas fa-phone" style="margin-right: 4px;"></i> Call
+                                    </a>
+                                    <a href="mailto:commercial@oremus.co.id" style="flex: 1; background: #0B1426; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; text-align: center; font-size: 12px; font-weight: 600;">
+                                        <i class="fas fa-envelope" style="margin-right: 4px;"></i> Email
+                                    </a>
+                                </div>
+                            </div>
+                        `,
+                        color: '#0B1426',
+                        isMain: true
+                    },
+                    {
+                        coords: [-7.168208955469719, 112.66021777824521],
+                        title: "Gresik Port",
+                        content: `
+                            <div style="padding: 12px; min-width: 260px; font-family: 'Inter', sans-serif;">
+                                <h6 style="color: #0B1426; margin-bottom: 8px; font-weight: 600;">Gresik Port</h6>
+                                <p style="margin: 5px 0; font-size: 13px; color: #4A5568; line-height: 1.4;">
+                                    <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 6px;"></i>
+                                    Jl. Lombok No.7 Blok A, RT.02/RW.01, Sidorukun, Kec. Gresik, Kabupaten Gresik, Jawa Timur 61112
+                                </p>
+                            </div>
+                        `,
+                        color: '#2C7A7B'
+                    },
+                    {
+                        coords: [-6.700637388960823, 111.32297505830293],
+                        title: "Rembang Port",
+                        content: `
+                            <div style="padding: 12px; min-width: 260px; font-family: 'Inter', sans-serif;">
+                                <h6 style="color: #0B1426; margin-bottom: 8px; font-weight: 600;">Rembang Port</h6>
+                                <p style="margin: 5px 0; font-size: 13px; color: #4A5568; line-height: 1.4;">
+                                    <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 6px;"></i>
+                                    Kelurahan Magersari RT 02 RW 02, Kecamatan Rembang, Kabupaten Rembang, Central Java
+                                </p>
+                            </div>
+                        `,
+                        color: '#2C7A7B'
+                    },
+                    {
+                        coords: [-6.876628069969104, 112.40721246864304],
+                        title: "Lamongan Port",
+                        content: `
+                            <div style="padding: 12px; min-width: 260px; font-family: 'Inter', sans-serif;">
+                                <h6 style="color: #0B1426; margin-bottom: 8px; font-weight: 600;">Lamongan Port</h6>
+                                <p style="margin: 5px 0; font-size: 13px; color: #4A5568; line-height: 1.4;">
+                                    <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 6px;"></i>
+                                    Jln. Raya Deandels no.16 KM Sby 63.9, Desa Kemantren, Kec. Paciran, Kabupaten Lamongan
+                                </p>
+                            </div>
+                        `,
+                        color: '#2C7A7B'
+                    },
+                    {
+                        coords: [-1.2745133965490056, 116.81244773977738],
+                        title: "Balikpapan Port",
+                        content: `
+                            <div style="padding: 12px; min-width: 260px; font-family: 'Inter', sans-serif;">
+                                <h6 style="color: #0B1426; margin-bottom: 8px; font-weight: 600;">Balikpapan Port</h6>
+                                <p style="margin: 5px 0; font-size: 13px; color: #4A5568; line-height: 1.4;">
+                                    <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 6px;"></i>
+                                    Jln. Prapatan no.14 RT 26, Kelurahan Prapatan, Kecamatan Balikpapan Kota, East Kalimantan
+                                </p>
+                            </div>
+                        `,
+                        color: '#2C7A7B'
+                    }
+                    // Add other offices following the same pattern if needed
+                ];
+
+                // Add markers with enhanced styling
+                branchOffices.forEach(office => {
+                    const marker = L.marker(office.coords, {
+                        icon: createCustomIcon(office.color, office.isMain)
+                    }).addTo(map);
+
+                    marker.bindPopup(office.content, {
+                        maxWidth: 320,
+                        className: 'custom-popup',
+                        closeButton: true
+                    });
+
+                    marker.bindTooltip(office.title, {
+                        permanent: false,
+                        direction: 'top',
+                        offset: [0, -15],
+                        className: 'custom-tooltip'
+                    });
+
+                    // Enhanced hover effects
+                    marker.on('mouseover', function() {
+                        this.openTooltip();
+                    });
+                    marker.on('mouseout', function() {
+                        this.closeTooltip();
+                    });
+                });
+
+                // Enhanced map controls
+                L.control.zoom({
+                    position: 'bottomright'
+                }).addTo(map);
+
+                L.control.scale({
+                    position: 'bottomleft'
+                }).addTo(map);
+
+                // Enhanced info control
+                const info = L.control({ position: 'topright' });
+                info.onAdd = function(map) {
+                    this._div = L.DomUtil.create('div', 'info-control');
+                    this._div.innerHTML = `
+                        <div style="
+                            background: rgba(255, 255, 255, 0.95);
+                            backdrop-filter: blur(10px);
+                            padding: 15px 20px;
+                            border-radius: 12px;
+                            box-shadow: 0 8px 30px rgba(11, 20, 38, 0.15);
+                            font-family: 'Inter', sans-serif;
+                            border: 1px solid rgba(56, 178, 172, 0.2);
+                            max-width: 250px;
+                        ">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <div style="width: 30px; height: 30px; background: linear-gradient(135deg, #38B2AC 0%, #2C7A7B 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
+                                    <i class="fas fa-anchor" style="color: white; font-size: 12px;"></i>
+                                </div>
+                                <h6 style="margin: 0; color: #0B1426; font-weight: 600; font-size: 14px;">PT. Oremus Bahari Mandiri</h6>
+                            </div>
+                            <p style="margin: 0; color: #4A5568; font-size: 12px; line-height: 1.4;">Click markers to view office details and contact information</p>
+                        </div>
+                    `;
+                    return this._div;
+                };
+                info.addTo(map);
+
+                // Enhanced map resize handling
+                const resizeObserver = new ResizeObserver(entries => {
+                    map.invalidateSize();
+                });
+                resizeObserver.observe(mapContainer);
+
+            } catch (error) {
+                console.error('Error initializing map:', error);
+                mapContainer.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: center; height: 400px; background: #F7FAFC; border-radius: 20px; color: #4A5568;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                            <p>Map temporarily unavailable</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Helper function to check if element is in viewport
+        function isElementInViewport(el) {
+            if (!el) return false;
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0
+            );
+        }
+
+        // Enhanced performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    if (perfData) {
+                        console.log(`Page load time: ${Math.round(perfData.loadEventEnd - perfData.loadEventStart)}ms`);
+                    }
+                }, 0);
             });
         }
-    </script>
 
-    @yield('scripts')
+        // Enhanced error handling
+        window.addEventListener('error', function(e) {
+            console.error('JavaScript error:', e.error);
+        });
+
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('Unhandled promise rejection:', e.reason);
+        });
+    </script>
 </body>
+
 </html>
