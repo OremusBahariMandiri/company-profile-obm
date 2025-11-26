@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Achievement;
-use Illuminate\Support\Facades\Storage;
+use App\Helpers\StorageHelper; // Import StorageHelper
 
 class AchievementController extends Controller
 {
@@ -68,13 +68,17 @@ class AchievementController extends Controller
 
         $data = $request->all();
 
-        // Handle photo upload
+        // Handle photo upload - UPDATED SECTION
         if ($request->hasFile('photo_1')) {
-            $data['photo_1'] = $request->file('photo_1')->store('achievements', 'public');
+            // BEFORE: $data['photo_1'] = $request->file('photo_1')->store('achievements', 'public');
+            // AFTER:
+            $data['photo_1'] = StorageHelper::storeFile($request->file('photo_1'), 'achievements');
         }
 
         if ($request->hasFile('photo_2')) {
-            $data['photo_2'] = $request->file('photo_2')->store('achievements', 'public');
+            // BEFORE: $data['photo_2'] = $request->file('photo_2')->store('achievements', 'public');
+            // AFTER:
+            $data['photo_2'] = StorageHelper::storeFile($request->file('photo_2'), 'achievements');
         }
 
         Achievement::create($data);
@@ -125,23 +129,30 @@ class AchievementController extends Controller
 
         $data = $request->all();
 
-        // Handle photo upload
+        // Handle photo upload - UPDATED SECTION
         if ($request->hasFile('photo_1')) {
             // Delete old photo
             if ($achievement->photo_1) {
-                Storage::disk('public')->delete($achievement->photo_1);
+                // BEFORE: Storage::disk('public')->delete($achievement->photo_1);
+                // AFTER:
+                StorageHelper::deleteFile($achievement->photo_1);
             }
-            $data['photo_1'] = $request->file('photo_1')->store('achievements', 'public');
+            // BEFORE: $data['photo_1'] = $request->file('photo_1')->store('achievements', 'public');
+            // AFTER:
+            $data['photo_1'] = StorageHelper::storeFile($request->file('photo_1'), 'achievements');
         }
 
         if ($request->hasFile('photo_2')) {
             // Delete old photo
             if ($achievement->photo_2) {
-                Storage::disk('public')->delete($achievement->photo_2);
+                // BEFORE: Storage::disk('public')->delete($achievement->photo_2);
+                // AFTER:
+                StorageHelper::deleteFile($achievement->photo_2);
             }
-            $data['photo_2'] = $request->file('photo_2')->store('achievements', 'public');
+            // BEFORE: $data['photo_2'] = $request->file('photo_2')->store('achievements', 'public');
+            // AFTER:
+            $data['photo_2'] = StorageHelper::storeFile($request->file('photo_2'), 'achievements');
         }
-
 
         $achievement->update($data);
 
@@ -154,13 +165,17 @@ class AchievementController extends Controller
      */
     public function destroy(Achievement $achievement)
     {
-        // Delete associated photo
+        // Delete associated photo - UPDATED SECTION
         if ($achievement->photo_1) {
-            Storage::disk('public')->delete($achievement->photo_1);
+            // BEFORE: Storage::disk('public')->delete($achievement->photo_1);
+            // AFTER:
+            StorageHelper::deleteFile($achievement->photo_1);
         }
 
         if ($achievement->photo_2) {
-            Storage::disk('public')->delete($achievement->photo_2);
+            // BEFORE: Storage::disk('public')->delete($achievement->photo_2);
+            // AFTER:
+            StorageHelper::deleteFile($achievement->photo_2);
         }
 
         $achievement->delete();

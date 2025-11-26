@@ -269,7 +269,11 @@
                             <div class="section-title">
                                 <i class="fas fa-image me-2"></i>Featured Image
                             </div>
-                            <img src="{{ Storage::url($news->image) }}" alt="{{ $news->title }}"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($news->image) }}" alt="{{ $news->title }}" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($news->image) }}" alt="{{ $news->title }}"
                                  class="main-image">
                         </div>
                     @endif
@@ -294,13 +298,21 @@
                                 <div class="image-gallery">
                                     @if($news->image2)
                                         <div>
-                                            <img src="{{ Storage::url($news->image2) }}" alt="Additional Image"
+                                            {{-- BEFORE: Storage::url() --}}
+                                            {{-- <img src="{{ Storage::url($news->image2) }}" alt="Additional Image" --}}
+
+                                            {{-- AFTER: StorageHelper --}}
+                                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($news->image2) }}" alt="Additional Image"
                                                  class="additional-image">
                                         </div>
                                     @endif
                                     @if($news->image3)
                                         <div>
-                                            <img src="{{ Storage::url($news->image3) }}" alt="Additional Image"
+                                            {{-- BEFORE: Storage::url() --}}
+                                            {{-- <img src="{{ Storage::url($news->image3) }}" alt="Additional Image" --}}
+
+                                            {{-- AFTER: StorageHelper --}}
+                                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($news->image3) }}" alt="Additional Image"
                                                  class="additional-image">
                                         </div>
                                     @endif

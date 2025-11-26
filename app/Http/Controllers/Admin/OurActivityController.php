@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\OurActivity;
-use Illuminate\Support\Facades\Storage;
+use App\Helpers\StorageHelper; // Import StorageHelper
 
 class OurActivityController extends Controller
 {
@@ -52,9 +52,11 @@ class OurActivityController extends Controller
 
         $data = $request->all();
 
-        // Handle photo upload
+        // Handle photo upload - UPDATED SECTION
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('activities', 'public');
+            // BEFORE: $request->file('photo')->store('activities', 'public');
+            // AFTER: StorageHelper
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'activities');
         }
 
         OurActivity::create($data);
@@ -110,13 +112,17 @@ class OurActivityController extends Controller
 
         $data = $request->all();
 
-        // Handle photo upload
+        // Handle photo upload - UPDATED SECTION
         if ($request->hasFile('photo')) {
             // Delete old photo
             if ($activity->photo) {
-                Storage::disk('public')->delete($activity->photo);
+                // BEFORE: Storage::disk('public')->delete($activity->photo);
+                // AFTER: StorageHelper
+                StorageHelper::deleteFile($activity->photo);
             }
-            $data['photo'] = $request->file('photo')->store('activities', 'public');
+            // BEFORE: $request->file('photo')->store('activities', 'public');
+            // AFTER: StorageHelper
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'activities');
         }
 
         $activity->update($data);
@@ -130,9 +136,11 @@ class OurActivityController extends Controller
      */
     public function destroy(OurActivity $activity)
     {
-        // Delete associated photo
+        // Delete associated photo - UPDATED SECTION
         if ($activity->photo) {
-            Storage::disk('public')->delete($activity->photo);
+            // BEFORE: Storage::disk('public')->delete($activity->photo);
+            // AFTER: StorageHelper
+            StorageHelper::deleteFile($activity->photo);
         }
 
         $activity->delete();

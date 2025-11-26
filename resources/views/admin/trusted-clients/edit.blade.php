@@ -36,7 +36,11 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="current-logo-container">
-                                        <img src="{{ Storage::url($trustedClient->photo) }}" alt="Current Logo"
+                                        {{-- BEFORE: Storage::url() --}}
+                                        {{-- <img src="{{ Storage::url($trustedClient->photo) }}" alt="Current Logo" --}}
+
+                                        {{-- AFTER: StorageHelper --}}
+                                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($trustedClient->photo) }}" alt="Current Logo"
                                              class="current-logo-img">
                                         <div class="current-logo-info">
                                             <p class="mb-1"><strong>File:</strong> {{ basename($trustedClient->photo) }}</p>
@@ -50,7 +54,11 @@
                                         <h6 class="fw-bold mb-3">Preview Website Saat Ini:</h6>
                                         <div class="client-current-preview">
                                             <div class="client-current-logo">
-                                                <img src="{{ Storage::url($trustedClient->photo) }}" alt="Current Website Preview">
+                                                {{-- BEFORE: Storage::url() --}}
+                                                {{-- <img src="{{ Storage::url($trustedClient->photo) }}" alt="Current Website Preview"> --}}
+
+                                                {{-- AFTER: StorageHelper --}}
+                                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($trustedClient->photo) }}" alt="Current Website Preview">
                                             </div>
                                         </div>
                                     </div>

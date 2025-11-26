@@ -48,7 +48,11 @@
                         @if($directorWelcome->director_photo)
                             <div class="mt-3 text-center">
                                 <div class="d-inline-block">
-                                    <img src="{{ Storage::url($directorWelcome->director_photo) }}" alt="Current Director Photo"
+                                    {{-- BEFORE: Storage::url() --}}
+                                    {{-- <img src="{{ Storage::url($directorWelcome->director_photo) }}" alt="Current Director Photo" --}}
+
+                                    {{-- AFTER: StorageHelper --}}
+                                    <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($directorWelcome->director_photo) }}" alt="Current Director Photo"
                                          class="rounded-circle border" style="width: 120px; height: 120px; object-fit: cover;">
                                     <p class="small text-muted mt-2">Foto saat ini</p>
                                 </div>

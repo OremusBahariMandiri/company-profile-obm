@@ -33,7 +33,11 @@
                     @if($trustedClient->photo)
                         <div class="logo-display-container">
                             <div class="main-logo-display">
-                                <img src="{{ Storage::url($trustedClient->photo) }}" alt="Client Logo"
+                                {{-- BEFORE: Storage::url() --}}
+                                {{-- <img src="{{ Storage::url($trustedClient->photo) }}" alt="Client Logo" --}}
+
+                                {{-- AFTER: StorageHelper --}}
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($trustedClient->photo) }}" alt="Client Logo"
                                      class="main-logo-img" id="mainLogo">
                             </div>
 
@@ -101,13 +105,18 @@
 
                     @if($trustedClient->photo)
                         @php
-                            $imagePath = Storage::disk('public')->path($trustedClient->photo);
-                            $fileExists = file_exists($imagePath);
-                            $fileSize = $fileExists ? filesize($imagePath) : 0;
-                            $imageInfo = $fileExists ? @getimagesize(Storage::disk('public')->url($trustedClient->photo)) : null;
+                            // BEFORE: Storage::disk('public')->path($trustedClient->photo);
+                            // AFTER: Use StorageHelper methods
+                            $fileSize = \App\Helpers\StorageHelper::getFileSize($trustedClient->photo);
+                            $fullPath = \App\Helpers\StorageHelper::getStoragePath($trustedClient->photo);
+                            $fileExists = file_exists($fullPath);
                         @endphp
 
-                        @if($imageInfo)
+                        @if($fileExists && function_exists('getimagesize'))
+                            @php
+                                $imageInfo = getimagesize($fullPath);
+                            @endphp
+                            @if($imageInfo)
                             <div class="info-group mb-3">
                                 <label class="info-label">Dimensi:</label>
                                 <div class="info-value">
@@ -133,7 +142,16 @@
                                     <span class="badge bg-info">{{ $format }}</span>
                                 </div>
                             </div>
+                            @endif
                         @endif
+
+                        <div class="info-group mb-3">
+                            <label class="info-label">Ukuran File:</label>
+                            <div class="info-value">
+                                {{ number_format($fileSize / 1024, 2) }} KB
+                                <br><small class="text-muted">({{ number_format($fileSize / 1024 / 1024, 2) }} MB)</small>
+                            </div>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -159,7 +177,11 @@
                                 <div class="client-item-preview featured">
                                     @if($trustedClient->photo)
                                         <div class="client-logo-preview">
-                                            <img src="{{ Storage::url($trustedClient->photo) }}" alt="Current Logo">
+                                            {{-- BEFORE: Storage::url() --}}
+                                            {{-- <img src="{{ Storage::url($trustedClient->photo) }}" alt="Current Logo"> --}}
+
+                                            {{-- AFTER: StorageHelper --}}
+                                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($trustedClient->photo) }}" alt="Current Logo">
                                         </div>
                                     @else
                                         <div class="client-logo-preview no-image">
@@ -208,7 +230,11 @@
             </div>
             <div class="modal-body text-center">
                 @if($trustedClient->photo)
-                    <img src="{{ Storage::url($trustedClient->photo) }}" alt="Logo Zoom"
+                    {{-- BEFORE: Storage::url() --}}
+                    {{-- <img src="{{ Storage::url($trustedClient->photo) }}" alt="Logo Zoom" --}}
+
+                    {{-- AFTER: StorageHelper --}}
+                    <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($trustedClient->photo) }}" alt="Logo Zoom"
                          class="img-fluid" style="max-height: 70vh;">
                 @endif
             </div>
@@ -428,7 +454,7 @@ function zoomLogo() {
 
 function confirmDelete(id) {
     const deleteForm = document.getElementById('deleteForm');
-    deleteForm.action = `/admin/trusted-clients/${id}`;
+    deleteForm.action = `/trusted-clients/${id}`;
 
     const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
     modal.show();

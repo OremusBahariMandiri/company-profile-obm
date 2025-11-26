@@ -27,14 +27,19 @@
         <div class="card-body text-center">
             @if($organizationStructure->photo)
                 <div class="mb-3">
-                    <img src="{{ Storage::url($organizationStructure->photo) }}" alt="Organization Structure"
+                    <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($organizationStructure->photo) }}" alt="Organization Structure"
                          class="img-fluid rounded shadow border" style="max-width: 100%; max-height: 600px; object-fit: contain;">
                 </div>
                 <div class="d-flex justify-content-center gap-2">
-                    <a href="{{ Storage::url($organizationStructure->photo) }}" target="_blank" class="btn btn-primary">
+                    {{-- BEFORE: Storage::url() --}}
+                    {{-- <a href="{{ Storage::url($organizationStructure->photo) }}" target="_blank" class="btn btn-primary"> --}}
+                    {{-- <a href="{{ Storage::url($organizationStructure->photo) }}" download class="btn btn-info"> --}}
+
+                    {{-- AFTER: StorageHelper --}}
+                    <a href="{{ \App\Helpers\StorageHelper::getStorageUrl($organizationStructure->photo) }}" target="_blank" class="btn btn-primary">
                         <i class="fas fa-external-link-alt me-2"></i>Buka Full Size
                     </a>
-                    <a href="{{ Storage::url($organizationStructure->photo) }}" download class="btn btn-info">
+                    <a href="{{ \App\Helpers\StorageHelper::getStorageUrl($organizationStructure->photo) }}" download class="btn btn-info">
                         <i class="fas fa-download me-2"></i>Unduh Bagan
                     </a>
                 </div>
@@ -59,10 +64,14 @@
                 <div class="card-body">
                     @if($organizationStructure->photo)
                         @php
-                            $filePath = storage_path('app/public/' . $organizationStructure->photo);
-                            $fileSize = file_exists($filePath) ? filesize($filePath) : 0;
+                            // BEFORE: storage_path('app/public/' . $organizationStructure->photo);
+                            // AFTER: Use StorageHelper methods
+                            $fileSize = \App\Helpers\StorageHelper::getFileSize($organizationStructure->photo);
                             $fileExtension = strtoupper(pathinfo($organizationStructure->photo, PATHINFO_EXTENSION));
                             $fileName = basename($organizationStructure->photo);
+
+                            // For image dimensions, we still need the full path
+                            $fullPath = \App\Helpers\StorageHelper::getStoragePath($organizationStructure->photo);
                         @endphp
 
                         <div class="row mb-3">
@@ -102,9 +111,9 @@
                             </div>
                         </div>
 
-                        @if(function_exists('getimagesize'))
+                        @if(function_exists('getimagesize') && file_exists($fullPath))
                             @php
-                                $imageInfo = getimagesize(storage_path('app/public/' . $organizationStructure->photo));
+                                $imageInfo = getimagesize($fullPath);
                             @endphp
                             @if($imageInfo)
                             <div class="row">
@@ -180,10 +189,15 @@
                             <i class="fas fa-edit me-2"></i>Edit Struktur
                         </a>
                         @if($organizationStructure->photo)
-                        <a href="{{ Storage::url($organizationStructure->photo) }}" target="_blank" class="btn btn-info">
+                        {{-- BEFORE: Storage::url() --}}
+                        {{-- <a href="{{ Storage::url($organizationStructure->photo) }}" target="_blank" class="btn btn-info"> --}}
+                        {{-- <a href="{{ Storage::url($organizationStructure->photo) }}" download class="btn btn-success"> --}}
+
+                        {{-- AFTER: StorageHelper --}}
+                        <a href="{{ \App\Helpers\StorageHelper::getStorageUrl($organizationStructure->photo) }}" target="_blank" class="btn btn-info">
                             <i class="fas fa-external-link-alt me-2"></i>Lihat Full Size
                         </a>
-                        <a href="{{ Storage::url($organizationStructure->photo) }}" download class="btn btn-success">
+                        <a href="{{ \App\Helpers\StorageHelper::getStorageUrl($organizationStructure->photo) }}" download class="btn btn-success">
                             <i class="fas fa-download me-2"></i>Unduh Bagan
                         </a>
                         @endif

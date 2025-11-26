@@ -52,7 +52,7 @@
                             <tr>
                                 <td>
                                     @if($certification->photo)
-                                        <img src="{{ Storage::url($certification->photo) }}" alt="Certificate Photo"
+                                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($certification->photo) }}" alt="Certificate Photo"
                                              class="rounded" style="width: 60px; height: 60px; object-fit: cover;">
                                     @else
                                         <div class="bg-secondary rounded d-flex align-items-center justify-content-center"

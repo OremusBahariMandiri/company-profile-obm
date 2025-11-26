@@ -51,10 +51,14 @@
                         <div class="mt-3">
                             <h6 class="text-muted mb-2">Bagan Saat Ini:</h6>
                             <div class="border rounded p-3 bg-light text-center">
-                                <img src="{{ Storage::url($organizationStructure->photo) }}" alt="Current Organization Structure"
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($organizationStructure->photo) }}" alt="Current Organization Structure"
                                      class="img-fluid rounded shadow" style="max-width: 100%; max-height: 400px; object-fit: contain;">
                                 <div class="mt-2">
-                                    <a href="{{ Storage::url($organizationStructure->photo) }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                    {{-- BEFORE: Storage::url() --}}
+                                    {{-- <a href="{{ Storage::url($organizationStructure->photo) }}" target="_blank" class="btn btn-sm btn-outline-primary"> --}}
+
+                                    {{-- AFTER: StorageHelper --}}
+                                    <a href="{{ \App\Helpers\StorageHelper::getStorageUrl($organizationStructure->photo) }}" target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-external-link-alt me-1"></i>Lihat Full Size
                                     </a>
                                 </div>
@@ -97,8 +101,9 @@
                     </div>
                     <div class="col-12">
                         @php
-                            $filePath = storage_path('app/public/' . $organizationStructure->photo);
-                            $fileSize = file_exists($filePath) ? filesize($filePath) : 0;
+                            // BEFORE: storage_path('app/public/' . $organizationStructure->photo);
+                            // AFTER: Use StorageHelper methods
+                            $fileSize = \App\Helpers\StorageHelper::getFileSize($organizationStructure->photo);
                             $fileExtension = strtoupper(pathinfo($organizationStructure->photo, PATHINFO_EXTENSION));
                         @endphp
                         <div class="row">

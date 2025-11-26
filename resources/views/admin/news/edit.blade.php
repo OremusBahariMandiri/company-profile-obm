@@ -279,7 +279,11 @@
                                         <label for="image" class="form-label">Main Image</label>
                                         @if($news->image)
                                             <div class="current-image">
-                                                <img src="{{ Storage::url($news->image) }}" alt="Current Main Image">
+                                                {{-- BEFORE: Storage::url() --}}
+                                                {{-- <img src="{{ Storage::url($news->image) }}" alt="Current Main Image"> --}}
+
+                                                {{-- AFTER: StorageHelper --}}
+                                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($news->image) }}" alt="Current Main Image">
                                                 <div class="current-image-label">Current</div>
                                             </div>
                                         @endif
@@ -304,7 +308,11 @@
                                         <label for="image2" class="form-label">Additional Image 2</label>
                                         @if($news->image2)
                                             <div class="current-image">
-                                                <img src="{{ Storage::url($news->image2) }}" alt="Current Image 2">
+                                                {{-- BEFORE: Storage::url() --}}
+                                                {{-- <img src="{{ Storage::url($news->image2) }}" alt="Current Image 2"> --}}
+
+                                                {{-- AFTER: StorageHelper --}}
+                                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($news->image2) }}" alt="Current Image 2">
                                                 <div class="current-image-label">Current</div>
                                             </div>
                                         @endif
@@ -329,7 +337,11 @@
                                         <label for="image3" class="form-label">Additional Image 3</label>
                                         @if($news->image3)
                                             <div class="current-image">
-                                                <img src="{{ Storage::url($news->image3) }}" alt="Current Image 3">
+                                                {{-- BEFORE: Storage::url() --}}
+                                                {{-- <img src="{{ Storage::url($news->image3) }}" alt="Current Image 3"> --}}
+
+                                                {{-- AFTER: StorageHelper --}}
+                                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($news->image3) }}" alt="Current Image 3">
                                                 <div class="current-image-label">Current</div>
                                             </div>
                                         @endif

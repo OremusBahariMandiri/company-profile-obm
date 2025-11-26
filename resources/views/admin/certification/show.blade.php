@@ -28,7 +28,7 @@
                 </div>
                 <div class="card-body text-center">
                     @if($certification->photo)
-                        <img src="{{ Storage::url($certification->photo) }}" alt="Certificate Photo"
+                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($certification->photo) }}" alt="Certificate Photo"
                              class="img-fluid rounded shadow" style="max-width: 100%; height: auto;">
                     @else
                         <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 200px;">

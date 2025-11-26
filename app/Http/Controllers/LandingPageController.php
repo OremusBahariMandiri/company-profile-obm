@@ -15,6 +15,7 @@ use App\Models\OurActivity;
 use App\Models\OurTeam;
 use App\Models\Service;
 use App\Models\TrustedClient;
+use App\Helpers\StorageHelper; // Import StorageHelper
 
 class LandingPageController extends Controller
 {
@@ -40,17 +41,23 @@ class LandingPageController extends Controller
         if ($mainContentData) {
             $heroSlides = [
                 [
-                    'image' => $mainContentData->photo_1 ? asset('storage/' . $mainContentData->photo_1) : 'images/carousel/pertama.jpg',
+                    // BEFORE: asset('storage/' . $mainContentData->photo_1)
+                    // AFTER: StorageHelper
+                    'image' => $mainContentData->photo_1 ? StorageHelper::getStorageUrl($mainContentData->photo_1) : '',
                     'title' => $mainContentData->title_1 ?? 'We Are a Classy Shipping Agency Company at all Indonesian ports',
                     'description' => $mainContentData->subtitle_1 ?? 'We can handle ship activities a general agents, local agents, and owner protecing agents for all kinds and types of ships such as tankers, bulk cargo, cruise, yacht, tug & barges, naval ships, offshore vessel AHTS, AWB, survey vessel, cable laying vessel, and offshore activities supporting services. We can serve in all ports in Indonesia.'
                 ],
                 [
-                    'image' => $mainContentData->photo_2 ? asset('storage/' . $mainContentData->photo_2) : 'images/carousel/kedua.jpg',
+                    // BEFORE: asset('storage/' . $mainContentData->photo_2)
+                    // AFTER: StorageHelper
+                    'image' => $mainContentData->photo_2 ? StorageHelper::getStorageUrl($mainContentData->photo_2) : '',
                     'title' => $mainContentData->title_2 ?? 'Provision Supply Excellence',
                     'description' => $mainContentData->subtitle_2 ?? 'We are ready and experienced in carrying out supply activities such as provision supply, bunker supply, fresh water supply and other needs on board. We can carry out activities when the ship is anchored. We are also ready to help sending a gasoline and other supply in emergency situations.'
                 ],
                 [
-                    'image' => $mainContentData->photo_3 ? asset('storage/' . $mainContentData->photo_3) : 'images/carousel/ketiga.jpg',
+                    // BEFORE: asset('storage/' . $mainContentData->photo_3)
+                    // AFTER: StorageHelper
+                    'image' => $mainContentData->photo_3 ? StorageHelper::getStorageUrl($mainContentData->photo_3) : '',
                     'title' => $mainContentData->title_3 ?? 'Emergency Medivac Operations',
                     'description' => $mainContentData->subtitle_3 ?? 'We also carry out activities that support the activities of the P&I club or ship owner in emergency cases such as managing sick crew, dead crew on board and returning the dead body. Of course we have a wide network of ambulance boats and the well hospitals/doctors.'
                 ]
@@ -86,7 +93,9 @@ class LandingPageController extends Controller
 
         if ($directorWelcomeData) {
             $director = [
-                'image' => $directorWelcomeData->director_photo ? asset('storage/' . $directorWelcomeData->director_photo) : 'images/direktur.png',
+                // BEFORE: asset('storage/' . $directorWelcomeData->director_photo)
+                // AFTER: StorageHelper
+                'image' => $directorWelcomeData->director_photo ? StorageHelper::getStorageUrl($directorWelcomeData->director_photo) : 'images/direktur.png',
                 'name' => $directorWelcomeData->director_name ?? 'Niko Kristanto',
                 'position' => 'President Director',
                 'company' => 'PT. Oremus Bahari Mandiri',
@@ -175,7 +184,9 @@ class LandingPageController extends Controller
                     'issuer' => 'Professional Certification',
                     'description' => $certification->description,
                     'type' => 'Maritime Standard',
-                    'image' => $certification->photo ? asset('storage/' . $certification->photo) : 'images/certificates/default.jpg',
+                    // BEFORE: asset('storage/' . $certification->photo)
+                    // AFTER: StorageHelper
+                    'image' => $certification->photo ? StorageHelper::getStorageUrl($certification->photo) : 'images/certificates/default.jpg',
                 ];
             }
         } else {
@@ -238,7 +249,9 @@ class LandingPageController extends Controller
         if ($organizationStructureData && $organizationStructureData->photo) {
             // Use organization structure from database
             $organizationStructure = [
-                'chart_image' => asset('storage/' . $organizationStructureData->photo),
+                // BEFORE: asset('storage/' . $organizationStructureData->photo)
+                // AFTER: StorageHelper
+                'chart_image' => StorageHelper::getStorageUrl($organizationStructureData->photo),
                 'title' => 'PT. Oremus Bahari Mandiri',
                 'subtitle' => 'Comprehensive Maritime Organization Structure',
                 'description' => 'Our strategic organizational framework ensures efficient maritime service delivery across all Indonesian ports with clear chains of command and specialized expertise.',
@@ -408,7 +421,9 @@ class LandingPageController extends Controller
                     'title' => $career->careers_name,
                     'location' => $career->working_area,
                     'department' => $career->position,
-                    'photo' => $career->photo ? asset('storage/' . $career->photo) : null,
+                    // BEFORE: asset('storage/' . $career->photo)
+                    // AFTER: StorageHelper
+                    'photo' => $career->photo ? StorageHelper::getStorageUrl($career->photo) : null,
                     'requirements' => array_slice($requirements, 0, 3), // Show only first 3 requirements
                     'salary' => $career->sallary ? 'Salary: ' . $career->sallary : null,
                     'end_date' => $career->end_date ? 'Apply before: ' . date('d M Y', strtotime($career->end_date)) : null,
@@ -425,7 +440,9 @@ class LandingPageController extends Controller
             // Use achievements from database
             $achievements = [
                 [
-                    'image' => $achievementsData->photo_1 ? asset('storage/' . $achievementsData->photo_1) : 'images/achievement/1.png',
+                    // BEFORE: asset('storage/' . $achievementsData->photo_1)
+                    // AFTER: StorageHelper
+                    'image' => $achievementsData->photo_1 ? StorageHelper::getStorageUrl($achievementsData->photo_1) : 'images/achievement/1.png',
                     'position' => 'right',
                     'items' => [
                         [
@@ -441,10 +458,11 @@ class LandingPageController extends Controller
                     ]
                 ],
                 [
-                   // SOLUSI: Gunakan ternary operator untuk pengecekan yang tepat
-'image' => $achievementsData->photo_2 ? asset('storage/' . $achievementsData->photo_2) :
-($achievementsData->photo_1 ? asset('storage/' . $achievementsData->photo_1) :
- asset('images/achievement/2.png')),
+                    // BEFORE: asset('storage/' . $achievementsData->photo_2) dengan fallback
+                    // AFTER: StorageHelper dengan fallback
+                    'image' => $achievementsData->photo_2 ? StorageHelper::getStorageUrl($achievementsData->photo_2) :
+                               ($achievementsData->photo_1 ? StorageHelper::getStorageUrl($achievementsData->photo_1) :
+                                asset('images/achievement/2.png')),
                     'position' => 'left',
                     'items' => [
                         [
@@ -504,7 +522,9 @@ class LandingPageController extends Controller
         if ($ourTeamData) {
             // Use team data from database
             $team[] = [
-                'image' => $ourTeamData->photo_1 ? asset('storage/' . $ourTeamData->photo_1) : 'images/team/1.png',
+                // BEFORE: asset('storage/' . $ourTeamData->photo_1)
+                // AFTER: StorageHelper
+                'image' => $ourTeamData->photo_1 ? StorageHelper::getStorageUrl($ourTeamData->photo_1) : 'images/team/1.png',
                 'name' => $ourTeamData->title_photo_1 ?? 'PT. Oremus Bahari Mandiri Team',
                 'position' => $ourTeamData->subtitle_photo_1 ?? 'Comprehensive Maritime Solutions Team',
                 'size' => 'full'
@@ -513,7 +533,9 @@ class LandingPageController extends Controller
             // Add second team if exists
             if ($ourTeamData->photo_2 || $ourTeamData->title_photo_2) {
                 $team[] = [
-                    'image' => $ourTeamData->photo_2 ? asset('storage/' . $ourTeamData->photo_2) : 'images/team/2.jpg',
+                    // BEFORE: asset('storage/' . $ourTeamData->photo_2)
+                    // AFTER: StorageHelper
+                    'image' => $ourTeamData->photo_2 ? StorageHelper::getStorageUrl($ourTeamData->photo_2) : 'images/team/2.jpg',
                     'name' => $ourTeamData->title_photo_2 ?? 'East Kalimantan Operations',
                     'position' => $ourTeamData->subtitle_photo_2 ?? 'Regional Maritime Service Center',
                     'size' => 'half'
@@ -523,7 +545,9 @@ class LandingPageController extends Controller
             // Add third team if exists
             if ($ourTeamData->photo_3 || $ourTeamData->title_photo_3) {
                 $team[] = [
-                    'image' => $ourTeamData->photo_3 ? asset('storage/' . $ourTeamData->photo_3) : 'images/team/3.jpg',
+                    // BEFORE: asset('storage/' . $ourTeamData->photo_3)
+                    // AFTER: StorageHelper
+                    'image' => $ourTeamData->photo_3 ? StorageHelper::getStorageUrl($ourTeamData->photo_3) : 'images/team/3.jpg',
                     'name' => $ourTeamData->title_photo_3 ?? 'Central Operations Team',
                     'position' => $ourTeamData->subtitle_photo_3 ?? 'Headquarters Service Division',
                     'size' => 'half'
@@ -567,7 +591,9 @@ class LandingPageController extends Controller
         foreach ($activitiesData as $activity) {
             if (isset($activities[$activity->category])) {
                 $activities[$activity->category][] = [
-                    'image' => $activity->photo ? asset('storage/' . $activity->photo) : 'images/activities/default.jpg',
+                    // BEFORE: asset('storage/' . $activity->photo)
+                    // AFTER: StorageHelper
+                    'image' => $activity->photo ? StorageHelper::getStorageUrl($activity->photo) : 'images/activities/default.jpg',
                     'title' => $activity->title
                 ];
             }
@@ -612,7 +638,9 @@ class LandingPageController extends Controller
         $clients = [];
         foreach ($trustedClientsData as $client) {
             if ($client->photo) {
-                $clients[] = asset('storage/' . $client->photo);
+                // BEFORE: asset('storage/' . $client->photo)
+                // AFTER: StorageHelper
+                $clients[] = StorageHelper::getStorageUrl($client->photo);
             }
         }
 

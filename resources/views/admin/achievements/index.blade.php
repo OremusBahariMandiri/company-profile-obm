@@ -63,7 +63,11 @@
                             <tr>
                                 <td>
                                     @if($achievement->photo_1)
-                                        <img src="{{ Storage::url($achievement->photo_1) }}" alt="Achievement Photo"
+                                        {{-- BEFORE: Storage::url() --}}
+                                        {{-- <img src="{{ Storage::url($achievement->photo_1) }}" alt="Achievement Photo" --}}
+
+                                        {{-- AFTER: StorageHelper --}}
+                                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($achievement->photo_1) }}" alt="Achievement Photo"
                                              class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
                                     @else
                                         <div class="bg-light d-flex align-items-center justify-content-center"

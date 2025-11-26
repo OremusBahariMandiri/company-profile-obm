@@ -28,7 +28,11 @@
                 </div>
                 <div class="card-body text-center">
                     @if($career->photo)
-                        <img src="{{ Storage::url($career->photo) }}" alt="Career Photo"
+                        {{-- BEFORE: Storage::url() --}}
+                        {{-- <img src="{{ Storage::url($career->photo) }}" alt="Career Photo" --}}
+
+                        {{-- AFTER: StorageHelper --}}
+                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($career->photo) }}" alt="Career Photo"
                              class="img-fluid rounded shadow" style="max-width: 100%; height: auto;">
                     @else
                         <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 200px;">
@@ -224,7 +228,11 @@
                             <i class="fas fa-trash me-2"></i>Hapus Lowongan
                         </button>
                         @if($career->photo)
-                        <a href="{{ Storage::url($career->photo) }}" target="_blank" class="btn btn-info">
+                        {{-- BEFORE: Storage::url() --}}
+                        {{-- <a href="{{ Storage::url($career->photo) }}" target="_blank" class="btn btn-info"> --}}
+
+                        {{-- AFTER: StorageHelper --}}
+                        <a href="{{ \App\Helpers\StorageHelper::getStorageUrl($career->photo) }}" target="_blank" class="btn btn-info">
                             <i class="fas fa-download me-2"></i>Unduh Foto
                         </a>
                         @endif

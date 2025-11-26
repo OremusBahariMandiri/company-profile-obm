@@ -41,6 +41,7 @@
                         <label for="photo_1" class="form-label">Foto 1 <span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('photo_1') is-invalid @enderror"
                                id="photo_1" name="photo_1" accept="image/*" required>
+                        <small class="text-muted">Format yang didukung: JPEG, PNG, JPG, GIF. Maksimal 5MB.</small>
                         @error('photo_1')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -76,6 +77,7 @@
                         <label for="photo_2" class="form-label">Foto 2 <span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('photo_2') is-invalid @enderror"
                                id="photo_2" name="photo_2" accept="image/*" required>
+                        <small class="text-muted">Format yang didukung: JPEG, PNG, JPG, GIF. Maksimal 5MB.</small>
                         @error('photo_2')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -111,6 +113,7 @@
                         <label for="photo_3" class="form-label">Foto 3 <span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('photo_3') is-invalid @enderror"
                                id="photo_3" name="photo_3" accept="image/*" required>
+                        <small class="text-muted">Format yang didukung: JPEG, PNG, JPG, GIF. Maksimal 5MB.</small>
                         @error('photo_3')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -167,6 +170,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         preview.innerHTML = `
                             <img src="${e.target.result}" alt="Preview"
                                  class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
+                            <p class="small text-success mt-1">
+                                <i class="fas fa-check me-1"></i>Foto berhasil dipilih
+                            </p>
                         `;
                     };
                     reader.readAsDataURL(file);

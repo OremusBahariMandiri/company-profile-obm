@@ -61,7 +61,7 @@
                             <tr>
                                 <td>
                                     @if($structure->photo)
-                                        <img src="{{ Storage::url($structure->photo) }}" alt="Organization Structure"
+                                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($structure->photo) }}" alt="Organization Structure"
                                              class="rounded border" style="width: 120px; height: 80px; object-fit: cover;">
                                     @else
                                         <div class="bg-secondary rounded d-flex align-items-center justify-content-center"
@@ -72,12 +72,21 @@
                                 </td>
                                 <td>
                                     @if($structure->photo)
-                                        <a href="{{ Storage::url($structure->photo) }}" target="_blank" class="text-decoration-none">
-                                            <img src="{{ Storage::url($structure->photo) }}" alt="Organization Structure Preview"
+                                        {{-- BEFORE: Storage::url() --}}
+                                        {{-- <a href="{{ Storage::url($structure->photo) }}" target="_blank" class="text-decoration-none"> --}}
+                                        {{--     <img src="{{ Storage::url($structure->photo) }}" alt="Organization Structure Preview" --}}
+
+                                        {{-- AFTER: StorageHelper --}}
+                                        <a href="{{ \App\Helpers\StorageHelper::getStorageUrl($structure->photo) }}" target="_blank" class="text-decoration-none">
+                                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($structure->photo) }}" alt="Organization Structure Preview"
                                                  class="rounded border shadow-sm" style="max-width: 200px; max-height: 120px; object-fit: contain;">
                                         </a>
                                         <div class="mt-2">
-                                            <a href="{{ Storage::url($structure->photo) }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                            {{-- BEFORE: Storage::url() --}}
+                                            {{-- <a href="{{ Storage::url($structure->photo) }}" target="_blank" class="btn btn-sm btn-outline-primary"> --}}
+
+                                            {{-- AFTER: StorageHelper --}}
+                                            <a href="{{ \App\Helpers\StorageHelper::getStorageUrl($structure->photo) }}" target="_blank" class="btn btn-sm btn-outline-primary">
                                                 <i class="fas fa-external-link-alt me-1"></i>Lihat Full Size
                                             </a>
                                         </div>
@@ -88,8 +97,9 @@
                                 <td>
                                     @if($structure->photo)
                                         @php
-                                            $filePath = storage_path('app/public/' . $structure->photo);
-                                            $fileSize = file_exists($filePath) ? filesize($filePath) : 0;
+                                            // BEFORE: storage_path('app/public/' . $structure->photo);
+                                            // AFTER: Use StorageHelper methods
+                                            $fileSize = \App\Helpers\StorageHelper::getFileSize($structure->photo);
                                             $fileExtension = strtoupper(pathinfo($structure->photo, PATHINFO_EXTENSION));
                                         @endphp
                                         <div class="mb-2">

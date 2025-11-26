@@ -62,7 +62,11 @@
                             <tr>
                                 <td>
                                     @if($welcome->director_photo)
-                                        <img src="{{ Storage::url($welcome->director_photo) }}" alt="Director Photo"
+                                        {{-- BEFORE: Storage::url() --}}
+                                        {{-- <img src="{{ Storage::url($welcome->director_photo) }}" alt="Director Photo" --}}
+
+                                        {{-- AFTER: StorageHelper --}}
+                                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($welcome->director_photo) }}" alt="Director Photo"
                                              class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover;">
                                     @else
                                         <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center"

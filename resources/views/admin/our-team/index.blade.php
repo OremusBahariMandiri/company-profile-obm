@@ -62,7 +62,7 @@
                             <tr>
                                 <td>
                                     @if($team->photo_1)
-                                        <img src="{{ Storage::url($team->photo_1) }}" alt="Team Photo"
+                                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($team->photo_1) }}" alt="Team Photo"
                                              class="rounded" style="width: 80px; height: 60px; object-fit: cover;">
                                     @else
                                         <div class="bg-secondary rounded d-flex align-items-center justify-content-center"

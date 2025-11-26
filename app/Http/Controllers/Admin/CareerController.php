@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Career;
-use Illuminate\Support\Facades\Storage;
+use App\Helpers\StorageHelper; // Import StorageHelper
 
 class CareerController extends Controller
 {
@@ -58,9 +58,11 @@ class CareerController extends Controller
 
         $data = $request->all();
 
-        // Handle photo upload
+        // Handle photo upload - UPDATED SECTION
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('careers', 'public');
+            // BEFORE: $request->file('photo')->store('careers', 'public');
+            // AFTER: StorageHelper
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'careers');
         }
 
         Career::create($data);
@@ -116,13 +118,17 @@ class CareerController extends Controller
 
         $data = $request->all();
 
-        // Handle photo upload
+        // Handle photo upload - UPDATED SECTION
         if ($request->hasFile('photo')) {
             // Delete old photo
             if ($career->photo) {
-                Storage::disk('public')->delete($career->photo);
+                // BEFORE: Storage::disk('public')->delete($career->photo);
+                // AFTER: StorageHelper
+                StorageHelper::deleteFile($career->photo);
             }
-            $data['photo'] = $request->file('photo')->store('careers', 'public');
+            // BEFORE: $request->file('photo')->store('careers', 'public');
+            // AFTER: StorageHelper
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'careers');
         }
 
         $career->update($data);
@@ -136,9 +142,11 @@ class CareerController extends Controller
      */
     public function destroy(Career $career)
     {
-        // Delete associated photo
+        // Delete associated photo - UPDATED SECTION
         if ($career->photo) {
-            Storage::disk('public')->delete($career->photo);
+            // BEFORE: Storage::disk('public')->delete($career->photo);
+            // AFTER: StorageHelper
+            StorageHelper::deleteFile($career->photo);
         }
 
         $career->delete();

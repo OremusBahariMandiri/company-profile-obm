@@ -32,7 +32,11 @@
                     </h5>
                     @if($activity->photo)
                         <div class="text-center">
-                            <img src="{{ Storage::url($activity->photo) }}" alt="{{ $activity->title }}"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($activity->photo) }}" alt="{{ $activity->title }}" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($activity->photo) }}" alt="{{ $activity->title }}"
                                  class="img-fluid rounded border shadow-sm" style="max-height: 400px; object-fit: cover;">
                         </div>
                     @else
@@ -102,14 +106,20 @@
                     <div class="info-item mb-3">
                         <strong class="text-dark">File Info:</strong>
                         @php
-                            $imagePath = Storage::disk('public')->path($activity->photo);
-                            $fileSize = file_exists($imagePath) ? round(filesize($imagePath) / 1024, 2) : 'N/A';
-                            $imageInfo = file_exists($imagePath) ? getimagesize(Storage::disk('public')->url($activity->photo)) : null;
+                            // BEFORE: Storage::disk('public')->path($activity->photo);
+                            // AFTER: Use StorageHelper methods
+                            $fileSize = \App\Helpers\StorageHelper::getFileSize($activity->photo);
+                            $fullPath = \App\Helpers\StorageHelper::getStoragePath($activity->photo);
                         @endphp
                         <ul class="list-unstyled mb-0">
-                            <li><small class="text-muted">Ukuran: {{ $fileSize }} KB</small></li>
-                            @if($imageInfo)
-                                <li><small class="text-muted">Dimensi: {{ $imageInfo[0] }}x{{ $imageInfo[1] }} pixel</small></li>
+                            <li><small class="text-muted">Ukuran: {{ number_format($fileSize / 1024, 2) }} KB</small></li>
+                            @if(file_exists($fullPath) && function_exists('getimagesize'))
+                                @php
+                                    $imageInfo = getimagesize($fullPath);
+                                @endphp
+                                @if($imageInfo)
+                                    <li><small class="text-muted">Dimensi: {{ $imageInfo[0] }}x{{ $imageInfo[1] }} pixel</small></li>
+                                @endif
                             @endif
                         </ul>
                     </div>
@@ -134,7 +144,11 @@
                         <div class="col-md-6">
                             <div class="gallery-item-preview position-relative" style="height: 200px; border-radius: 10px; overflow: hidden;">
                                 @if($activity->photo)
-                                    <img src="{{ Storage::url($activity->photo) }}" alt="{{ $activity->title }}"
+                                    {{-- BEFORE: Storage::url() --}}
+                                    {{-- <img src="{{ Storage::url($activity->photo) }}" alt="{{ $activity->title }}" --}}
+
+                                    {{-- AFTER: StorageHelper --}}
+                                    <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($activity->photo) }}" alt="{{ $activity->title }}"
                                          class="w-100 h-100" style="object-fit: cover;">
                                     <div class="gallery-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
                                          style="background: rgba(0,0,0,0.7); opacity: 0; transition: opacity 0.3s;">

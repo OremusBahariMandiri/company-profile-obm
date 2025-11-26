@@ -113,7 +113,11 @@
 
                             <div class="client-logo">
                                 @if($client->photo)
-                                    <img src="{{ Storage::url($client->photo) }}" alt="Client Logo"
+                                    {{-- BEFORE: Storage::url() --}}
+                                    {{-- <img src="{{ Storage::url($client->photo) }}" alt="Client Logo" --}}
+
+                                    {{-- AFTER: StorageHelper --}}
+                                    <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($client->photo) }}" alt="Client Logo"
                                          class="client-img">
                                 @else
                                     <div class="no-image">

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MainContent;
-use Illuminate\Support\Facades\Storage;
+use App\Helpers\StorageHelper; // Import StorageHelper
 
 class MainContentController extends Controller
 {
@@ -61,17 +61,23 @@ class MainContentController extends Controller
 
         $data = $request->all();
 
-        // Handle photo uploads
+        // Handle photo uploads - UPDATED SECTION
         if ($request->hasFile('photo_1')) {
-            $data['photo_1'] = $request->file('photo_1')->store('main-content', 'public');
+            // BEFORE: $data['photo_1'] = $request->file('photo_1')->store('main-content', 'public');
+            // AFTER:
+            $data['photo_1'] = StorageHelper::storeFile($request->file('photo_1'), 'main-content');
         }
 
         if ($request->hasFile('photo_2')) {
-            $data['photo_2'] = $request->file('photo_2')->store('main-content', 'public');
+            // BEFORE: $data['photo_2'] = $request->file('photo_2')->store('main-content', 'public');
+            // AFTER:
+            $data['photo_2'] = StorageHelper::storeFile($request->file('photo_2'), 'main-content');
         }
 
         if ($request->hasFile('photo_3')) {
-            $data['photo_3'] = $request->file('photo_3')->store('main-content', 'public');
+            // BEFORE: $data['photo_3'] = $request->file('photo_3')->store('main-content', 'public');
+            // AFTER:
+            $data['photo_3'] = StorageHelper::storeFile($request->file('photo_3'), 'main-content');
         }
 
         MainContent::create($data);
@@ -115,29 +121,41 @@ class MainContentController extends Controller
 
         $data = $request->all();
 
-        // Handle photo uploads
+        // Handle photo uploads - UPDATED SECTION
         if ($request->hasFile('photo_1')) {
             // Delete old photo
             if ($mainContent->photo_1) {
-                Storage::disk('public')->delete($mainContent->photo_1);
+                // BEFORE: Storage::disk('public')->delete($mainContent->photo_1);
+                // AFTER:
+                StorageHelper::deleteFile($mainContent->photo_1);
             }
-            $data['photo_1'] = $request->file('photo_1')->store('main-content', 'public');
+            // BEFORE: $data['photo_1'] = $request->file('photo_1')->store('main-content', 'public');
+            // AFTER:
+            $data['photo_1'] = StorageHelper::storeFile($request->file('photo_1'), 'main-content');
         }
 
         if ($request->hasFile('photo_2')) {
             // Delete old photo
             if ($mainContent->photo_2) {
-                Storage::disk('public')->delete($mainContent->photo_2);
+                // BEFORE: Storage::disk('public')->delete($mainContent->photo_2);
+                // AFTER:
+                StorageHelper::deleteFile($mainContent->photo_2);
             }
-            $data['photo_2'] = $request->file('photo_2')->store('main-content', 'public');
+            // BEFORE: $data['photo_2'] = $request->file('photo_2')->store('main-content', 'public');
+            // AFTER:
+            $data['photo_2'] = StorageHelper::storeFile($request->file('photo_2'), 'main-content');
         }
 
         if ($request->hasFile('photo_3')) {
             // Delete old photo
             if ($mainContent->photo_3) {
-                Storage::disk('public')->delete($mainContent->photo_3);
+                // BEFORE: Storage::disk('public')->delete($mainContent->photo_3);
+                // AFTER:
+                StorageHelper::deleteFile($mainContent->photo_3);
             }
-            $data['photo_3'] = $request->file('photo_3')->store('main-content', 'public');
+            // BEFORE: $data['photo_3'] = $request->file('photo_3')->store('main-content', 'public');
+            // AFTER:
+            $data['photo_3'] = StorageHelper::storeFile($request->file('photo_3'), 'main-content');
         }
 
         $mainContent->update($data);
@@ -151,15 +169,21 @@ class MainContentController extends Controller
      */
     public function destroy(MainContent $mainContent)
     {
-        // Delete associated photos
+        // Delete associated photos - UPDATED SECTION
         if ($mainContent->photo_1) {
-            Storage::disk('public')->delete($mainContent->photo_1);
+            // BEFORE: Storage::disk('public')->delete($mainContent->photo_1);
+            // AFTER:
+            StorageHelper::deleteFile($mainContent->photo_1);
         }
         if ($mainContent->photo_2) {
-            Storage::disk('public')->delete($mainContent->photo_2);
+            // BEFORE: Storage::disk('public')->delete($mainContent->photo_2);
+            // AFTER:
+            StorageHelper::deleteFile($mainContent->photo_2);
         }
         if ($mainContent->photo_3) {
-            Storage::disk('public')->delete($mainContent->photo_3);
+            // BEFORE: Storage::disk('public')->delete($mainContent->photo_3);
+            // AFTER:
+            StorageHelper::deleteFile($mainContent->photo_3);
         }
 
         $mainContent->delete();

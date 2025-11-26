@@ -125,7 +125,11 @@
                         @if($achievement->photo_1)
                         <label class="form-label">Foto Saat Ini</label>
                         <div>
-                            <img src="{{ Storage::url($achievement->photo_1) }}" alt="Current Photo 1"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($achievement->photo_1) }}" alt="Current Photo 1" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($achievement->photo_1) }}" alt="Current Photo 1"
                                  class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
                         </div>
                         @endif
@@ -236,7 +240,11 @@
                         @if($achievement->photo_2)
                         <label class="form-label">Foto Saat Ini</label>
                         <div>
-                            <img src="{{ Storage::url($achievement->photo_2) }}" alt="Current Photo 2"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($achievement->photo_2) }}" alt="Current Photo 2" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($achievement->photo_2) }}" alt="Current Photo 2"
                                  class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
                         </div>
                         @endif

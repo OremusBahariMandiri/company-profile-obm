@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DirectorWelcome;
-use Illuminate\Support\Facades\Storage;
+use App\Helpers\StorageHelper; // Import StorageHelper
 
 class DirectorWelcomeController extends Controller
 {
@@ -59,9 +59,11 @@ class DirectorWelcomeController extends Controller
 
         $data = $request->all();
 
-        // Handle director photo upload
+        // Handle director photo upload - UPDATED SECTION
         if ($request->hasFile('director_photo')) {
-            $data['director_photo'] = $request->file('director_photo')->store('director', 'public');
+            // BEFORE: $data['director_photo'] = $request->file('director_photo')->store('director', 'public');
+            // AFTER:
+            $data['director_photo'] = StorageHelper::storeFile($request->file('director_photo'), 'director');
         }
 
         DirectorWelcome::create($data);
@@ -103,13 +105,17 @@ class DirectorWelcomeController extends Controller
 
         $data = $request->all();
 
-        // Handle director photo upload
+        // Handle director photo upload - UPDATED SECTION
         if ($request->hasFile('director_photo')) {
             // Delete old photo
             if ($directorWelcome->director_photo) {
-                Storage::disk('public')->delete($directorWelcome->director_photo);
+                // BEFORE: Storage::disk('public')->delete($directorWelcome->director_photo);
+                // AFTER:
+                StorageHelper::deleteFile($directorWelcome->director_photo);
             }
-            $data['director_photo'] = $request->file('director_photo')->store('director', 'public');
+            // BEFORE: $data['director_photo'] = $request->file('director_photo')->store('director', 'public');
+            // AFTER:
+            $data['director_photo'] = StorageHelper::storeFile($request->file('director_photo'), 'director');
         }
 
         $directorWelcome->update($data);
@@ -123,9 +129,11 @@ class DirectorWelcomeController extends Controller
      */
     public function destroy(DirectorWelcome $directorWelcome)
     {
-        // Delete associated photo
+        // Delete associated photo - UPDATED SECTION
         if ($directorWelcome->director_photo) {
-            Storage::disk('public')->delete($directorWelcome->director_photo);
+            // BEFORE: Storage::disk('public')->delete($directorWelcome->director_photo);
+            // AFTER:
+            StorageHelper::deleteFile($directorWelcome->director_photo);
         }
 
         $directorWelcome->delete();

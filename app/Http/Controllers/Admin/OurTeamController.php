@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\OurTeam;
@@ -63,15 +64,16 @@ class OurTeamController extends Controller
 
         // Handle photo uploads
         if ($request->hasFile('photo_1')) {
-            $data['photo_1'] = $request->file('photo_1')->store('team', 'public');
+            $data['photo_1'] = StorageHelper::storeFile($request->file('photo_1'), 'team');
         }
 
         if ($request->hasFile('photo_2')) {
-            $data['photo_2'] = $request->file('photo_2')->store('team', 'public');
+            $data['photo_2'] = StorageHelper::storeFile($request->file('photo_2'), 'team');
         }
 
         if ($request->hasFile('photo_3')) {
-            $data['photo_3'] = $request->file('photo_3')->store('team', 'public');
+            $data['photo_3'] = StorageHelper::storeFile($request->file('photo_3'), 'team');
+
         }
 
         OurTeam::create($data);
@@ -119,25 +121,26 @@ class OurTeamController extends Controller
         if ($request->hasFile('photo_1')) {
             // Delete old photo
             if ($ourTeam->photo_1) {
-                Storage::disk('public')->delete($ourTeam->photo_1);
+                StorageHelper::deleteFile($ourTeam->photo_1);
             }
-            $data['photo_1'] = $request->file('photo_1')->store('team', 'public');
+            $data['photo_1'] = StorageHelper::storeFile($request->file('photo_1'), 'team');
         }
 
         if ($request->hasFile('photo_2')) {
             // Delete old photo
             if ($ourTeam->photo_2) {
-                Storage::disk('public')->delete($ourTeam->photo_2);
+                StorageHelper::deleteFile($ourTeam->photo_2);
             }
-            $data['photo_2'] = $request->file('photo_2')->store('team', 'public');
+
+            $data['photo_2'] = StorageHelper::storeFile($request->file('photo_2'), 'team');
         }
 
         if ($request->hasFile('photo_3')) {
             // Delete old photo
             if ($ourTeam->photo_3) {
-                Storage::disk('public')->delete($ourTeam->photo_3);
+                StorageHelper::deleteFile($ourTeam->photo_3);
             }
-            $data['photo_3'] = $request->file('photo_3')->store('team', 'public');
+            $data['photo_3'] = StorageHelper::storeFile($request->file('photo_3'), 'team');
         }
 
         $ourTeam->update($data);
@@ -153,13 +156,13 @@ class OurTeamController extends Controller
     {
         // Delete associated photos
         if ($ourTeam->photo_1) {
-            Storage::disk('public')->delete($ourTeam->photo_1);
+            StorageHelper::deleteFile($ourTeam->photo_1);
         }
         if ($ourTeam->photo_2) {
-            Storage::disk('public')->delete($ourTeam->photo_2);
+            StorageHelper::deleteFile($ourTeam->photo_2);
         }
         if ($ourTeam->photo_3) {
-            Storage::disk('public')->delete($ourTeam->photo_3);
+            StorageHelper::deleteFile($ourTeam->photo_3);
         }
 
         $ourTeam->delete();

@@ -29,7 +29,11 @@
                 <div class="card-body text-center">
                     @if($directorWelcome->director_photo)
                         <div class="mb-4">
-                            <img src="{{ Storage::url($directorWelcome->director_photo) }}"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($directorWelcome->director_photo) }}" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($directorWelcome->director_photo) }}"
                                  alt="Director Photo" class="rounded-circle border shadow"
                                  style="width: 150px; height: 150px; object-fit: cover;">
                         </div>
@@ -142,7 +146,11 @@
             <div class="row">
                 <div class="col-md-4 text-center">
                     @if($directorWelcome->director_photo)
-                        <img src="{{ Storage::url($directorWelcome->director_photo) }}"
+                        {{-- BEFORE: Storage::url() --}}
+                        {{-- <img src="{{ Storage::url($directorWelcome->director_photo) }}" --}}
+
+                        {{-- AFTER: StorageHelper --}}
+                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($directorWelcome->director_photo) }}"
                              alt="Director" class="img-fluid rounded shadow"
                              style="max-width: 200px;">
                     @endif

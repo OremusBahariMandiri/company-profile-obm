@@ -110,7 +110,11 @@
                             <tr>
                                 <td>
                                     @if($activity->photo)
-                                        <img src="{{ Storage::url($activity->photo) }}" alt="Activity Photo"
+                                        {{-- BEFORE: Storage::url() --}}
+                                        {{-- <img src="{{ Storage::url($activity->photo) }}" alt="Activity Photo" --}}
+
+                                        {{-- AFTER: StorageHelper --}}
+                                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($activity->photo) }}" alt="Activity Photo"
                                              class="rounded" style="width: 80px; height: 60px; object-fit: cover;">
                                     @else
                                         <div class="bg-secondary rounded d-flex align-items-center justify-content-center"

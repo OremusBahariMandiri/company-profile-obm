@@ -96,7 +96,11 @@
                 </div>
                 <div class="card-body text-center">
                     @if($achievement->photo_1)
-                        <img src="{{ Storage::url($achievement->photo_1) }}" alt="Achievement Photo 1"
+                        {{-- BEFORE: Storage::url() --}}
+                        {{-- <img src="{{ Storage::url($achievement->photo_1) }}" alt="Achievement Photo 1" --}}
+
+                        {{-- AFTER: StorageHelper --}}
+                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($achievement->photo_1) }}" alt="Achievement Photo 1"
                              class="img-fluid rounded shadow" style="max-height: 400px;">
                     @else
                         <div class="bg-light d-flex align-items-center justify-content-center rounded"
@@ -164,7 +168,11 @@
                 </div>
                 <div class="card-body text-center">
                     @if($achievement->photo_2)
-                        <img src="{{ Storage::url($achievement->photo_2) }}" alt="Achievement Photo 2"
+                        {{-- BEFORE: Storage::url() --}}
+                        {{-- <img src="{{ Storage::url($achievement->photo_2) }}" alt="Achievement Photo 2" --}}
+
+                        {{-- AFTER: StorageHelper --}}
+                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($achievement->photo_2) }}" alt="Achievement Photo 2"
                              class="img-fluid rounded shadow" style="max-height: 400px;">
                     @else
                         <div class="bg-light d-flex align-items-center justify-content-center rounded"

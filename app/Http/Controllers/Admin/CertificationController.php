@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Certification;
@@ -42,7 +43,8 @@ class CertificationController extends Controller
 
         // Handle photo upload
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('certifications', 'public');
+
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'certifications');
         }
 
         Certification::create($data);
@@ -84,9 +86,10 @@ class CertificationController extends Controller
         if ($request->hasFile('photo')) {
             // Delete old photo
             if ($certification->photo) {
-                Storage::disk('public')->delete($certification->photo);
+                StorageHelper::deleteFile($certification->photo);
             }
-            $data['photo'] = $request->file('photo')->store('certifications', 'public');
+
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'certifications');
         }
 
         $certification->update($data);
@@ -101,8 +104,9 @@ class CertificationController extends Controller
     public function destroy(Certification $certification)
     {
         // Delete associated photo
-        if ($certification->photo) {
-            Storage::disk('public')->delete($certification->photo);
+        if ($certification->photo) {    
+            StorageHelper::deleteFile($certification->photo);
+
         }
 
         $certification->delete();

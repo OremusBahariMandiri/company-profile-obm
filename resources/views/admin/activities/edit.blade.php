@@ -69,7 +69,11 @@
                     </div>
                     <div class="col-12 mb-3">
                         <div class="current-photo text-center">
-                            <img src="{{ Storage::url($activity->photo) }}" alt="Current Photo"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($activity->photo) }}" alt="Current Photo" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($activity->photo) }}" alt="Current Photo"
                                  class="rounded border" style="max-width: 400px; max-height: 300px; object-fit: cover;">
                             <p class="small text-muted mt-2">Foto yang sedang digunakan</p>
                         </div>

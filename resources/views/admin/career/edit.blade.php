@@ -90,7 +90,11 @@
                         @if($career->photo)
                         <div class="mt-3 text-center">
                             <p class="small text-muted mb-2">Foto saat ini:</p>
-                            <img src="{{ Storage::url($career->photo) }}" alt="Current Career Photo"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($career->photo) }}" alt="Current Career Photo" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($career->photo) }}" alt="Current Career Photo"
                                  class="rounded border" style="max-width: 200px; max-height: 200px; object-fit: cover;">
                         </div>
                         @endif

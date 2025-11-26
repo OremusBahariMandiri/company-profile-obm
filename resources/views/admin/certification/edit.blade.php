@@ -51,7 +51,7 @@
                         @if($certification->photo)
                         <div class="mt-3 text-center">
                             <p class="small text-muted mb-2">Foto saat ini:</p>
-                            <img src="{{ Storage::url($certification->photo) }}" alt="Current Certificate Photo"
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($certification->photo) }}" alt="Current Certificate Photo"
                                  class="rounded border" style="max-width: 200px; max-height: 200px; object-fit: cover;">
                         </div>
                         @endif

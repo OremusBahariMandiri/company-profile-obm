@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     @if($ourTeam->photo_1)
-                        <img src="{{ Storage::url($ourTeam->photo_1) }}" alt="Team Photo 1"
+                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($ourTeam->photo_1) }}" alt="Team Photo 1"
                              class="img-fluid rounded shadow" style="max-width: 100%; height: auto;">
                     @else
                         <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 200px;">
@@ -72,7 +72,7 @@
                     @if($ourTeam->title_photo_2 || $ourTeam->subtitle_photo_2 || $ourTeam->photo_2)
                         @if($ourTeam->photo_2)
                         <div class="text-center mb-3">
-                            <img src="{{ Storage::url($ourTeam->photo_2) }}" alt="Team Photo 2"
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($ourTeam->photo_2) }}" alt="Team Photo 2"
                                  class="img-fluid rounded shadow" style="max-width: 100%; max-height: 200px; object-fit: cover;">
                         </div>
                         @endif
@@ -118,7 +118,7 @@
                     @if($ourTeam->title_photo_3 || $ourTeam->subtitle_photo_3 || $ourTeam->photo_3)
                         @if($ourTeam->photo_3)
                         <div class="text-center mb-3">
-                            <img src="{{ Storage::url($ourTeam->photo_3) }}" alt="Team Photo 3"
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($ourTeam->photo_3) }}" alt="Team Photo 3"
                                  class="img-fluid rounded shadow" style="max-width: 100%; max-height: 200px; object-fit: cover;">
                         </div>
                         @endif

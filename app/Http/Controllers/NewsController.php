@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
+use App\Helpers\StorageHelper; // Import StorageHelper
 
 class NewsController extends Controller
 {
@@ -45,34 +45,23 @@ class NewsController extends Controller
         $news->topic = $request->topic;
         $news->news = $request->news;
 
-        // Path ke public_html/images/news
-        $publicHtmlPath = $_SERVER['DOCUMENT_ROOT'] . '/images/news';
-
-        // Pastikan folder images/news ada
-        if (!File::exists($publicHtmlPath)) {
-            File::makeDirectory($publicHtmlPath, 0755, true);
-        }
-
-        // Handle image uploads
+        // Handle image uploads - UPDATED SECTION
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . Str::random(10) . '.' . $image->getClientOriginalExtension();
-            $image->move($publicHtmlPath, $imageName);
-            $news->image = 'news/' . $imageName;
+            // BEFORE: Manual file handling dengan $_SERVER['DOCUMENT_ROOT']
+            // AFTER: StorageHelper
+            $news->image = StorageHelper::storeFile($request->file('image'), 'news');
         }
 
         if ($request->hasFile('image2')) {
-            $image2 = $request->file('image2');
-            $image2Name = time() . '_' . Str::random(10) . '.' . $image2->getClientOriginalExtension();
-            $image2->move($publicHtmlPath, $image2Name);
-            $news->image2 = 'news/' . $image2Name;
+            // BEFORE: Manual file handling dengan $_SERVER['DOCUMENT_ROOT']
+            // AFTER: StorageHelper
+            $news->image2 = StorageHelper::storeFile($request->file('image2'), 'news');
         }
 
         if ($request->hasFile('image3')) {
-            $image3 = $request->file('image3');
-            $image3Name = time() . '_' . Str::random(10) . '.' . $image3->getClientOriginalExtension();
-            $image3->move($publicHtmlPath, $image3Name);
-            $news->image3 = 'news/' . $image3Name;
+            // BEFORE: Manual file handling dengan $_SERVER['DOCUMENT_ROOT']
+            // AFTER: StorageHelper
+            $news->image3 = StorageHelper::storeFile($request->file('image3'), 'news');
         }
 
         $news->save();
@@ -117,49 +106,41 @@ class NewsController extends Controller
         $news->topic = $request->topic;
         $news->news = $request->news;
 
-        // Path ke public_html/images/news
-        $publicHtmlPath = $_SERVER['DOCUMENT_ROOT'] . '/images/news';
-
-        // Pastikan folder images/news ada
-        if (!File::exists($publicHtmlPath)) {
-            File::makeDirectory($publicHtmlPath, 0755, true);
-        }
-
-        // Handle image uploads
+        // Handle image uploads - UPDATED SECTION
         if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($news->image && File::exists($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image)) {
-                File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image);
+            // Delete old image
+            if ($news->image) {
+                // BEFORE: File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image);
+                // AFTER: StorageHelper
+                StorageHelper::deleteFile($news->image);
             }
-
-            $image = $request->file('image');
-            $imageName = time() . '_' . Str::random(10) . '.' . $image->getClientOriginalExtension();
-            $image->move($publicHtmlPath, $imageName);
-            $news->image = 'news/' . $imageName;
+            // BEFORE: Manual file handling dengan $_SERVER['DOCUMENT_ROOT']
+            // AFTER: StorageHelper
+            $news->image = StorageHelper::storeFile($request->file('image'), 'news');
         }
 
         if ($request->hasFile('image2')) {
-            // Delete old image if exists
-            if ($news->image2 && File::exists($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image2)) {
-                File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image2);
+            // Delete old image
+            if ($news->image2) {
+                // BEFORE: File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image2);
+                // AFTER: StorageHelper
+                StorageHelper::deleteFile($news->image2);
             }
-
-            $image2 = $request->file('image2');
-            $image2Name = time() . '_' . Str::random(10) . '.' . $image2->getClientOriginalExtension();
-            $image2->move($publicHtmlPath, $image2Name);
-            $news->image2 = 'news/' . $image2Name;
+            // BEFORE: Manual file handling dengan $_SERVER['DOCUMENT_ROOT']
+            // AFTER: StorageHelper
+            $news->image2 = StorageHelper::storeFile($request->file('image2'), 'news');
         }
 
         if ($request->hasFile('image3')) {
-            // Delete old image if exists
-            if ($news->image3 && File::exists($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image3)) {
-                File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image3);
+            // Delete old image
+            if ($news->image3) {
+                // BEFORE: File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image3);
+                // AFTER: StorageHelper
+                StorageHelper::deleteFile($news->image3);
             }
-
-            $image3 = $request->file('image3');
-            $image3Name = time() . '_' . Str::random(10) . '.' . $image3->getClientOriginalExtension();
-            $image3->move($publicHtmlPath, $image3Name);
-            $news->image3 = 'news/' . $image3Name;
+            // BEFORE: Manual file handling dengan $_SERVER['DOCUMENT_ROOT']
+            // AFTER: StorageHelper
+            $news->image3 = StorageHelper::storeFile($request->file('image3'), 'news');
         }
 
         $news->save();
@@ -174,15 +155,21 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
 
-        // Delete associated images
-        if ($news->image && File::exists($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image)) {
-            File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image);
+        // Delete associated images - UPDATED SECTION
+        if ($news->image) {
+            // BEFORE: File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image);
+            // AFTER: StorageHelper
+            StorageHelper::deleteFile($news->image);
         }
-        if ($news->image2 && File::exists($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image2)) {
-            File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image2);
+        if ($news->image2) {
+            // BEFORE: File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image2);
+            // AFTER: StorageHelper
+            StorageHelper::deleteFile($news->image2);
         }
-        if ($news->image3 && File::exists($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image3)) {
-            File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image3);
+        if ($news->image3) {
+            // BEFORE: File::delete($_SERVER['DOCUMENT_ROOT'] . '/images/' . $news->image3);
+            // AFTER: StorageHelper
+            StorageHelper::deleteFile($news->image3);
         }
 
         $news->delete();

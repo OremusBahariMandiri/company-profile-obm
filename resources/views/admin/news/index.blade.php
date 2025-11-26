@@ -129,7 +129,11 @@
                                             <td>{{ $news->firstItem() + $index }}</td>
                                             <td>
                                                 @if($item->image)
-                                                    <img src="{{ Storage::url($item->image) }}" alt="News Image"
+                                                    {{-- BEFORE: Storage::url() --}}
+                                                    {{-- <img src="{{ Storage::url($item->image) }}" alt="News Image" --}}
+
+                                                    {{-- AFTER: StorageHelper --}}
+                                                    <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($item->image) }}" alt="News Image"
                                                          class="news-img-thumbnail">
                                                 @else
                                                     <div class="news-img-placeholder">

@@ -29,7 +29,11 @@
                 <div class="card-body">
                     @if($mainContent->photo_1)
                         <div class="text-center mb-3">
-                            <img src="{{ Storage::url($mainContent->photo_1) }}"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($mainContent->photo_1) }}" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($mainContent->photo_1) }}"
                                  alt="Photo 1" class="img-fluid rounded"
                                  style="max-height: 200px; object-fit: cover; width: 100%;">
                         </div>
@@ -57,7 +61,11 @@
                 <div class="card-body">
                     @if($mainContent->photo_2)
                         <div class="text-center mb-3">
-                            <img src="{{ Storage::url($mainContent->photo_2) }}"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($mainContent->photo_2) }}" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($mainContent->photo_2) }}"
                                  alt="Photo 2" class="img-fluid rounded"
                                  style="max-height: 200px; object-fit: cover; width: 100%;">
                         </div>
@@ -85,7 +93,11 @@
                 <div class="card-body">
                     @if($mainContent->photo_3)
                         <div class="text-center mb-3">
-                            <img src="{{ Storage::url($mainContent->photo_3) }}"
+                            {{-- BEFORE: Storage::url() --}}
+                            {{-- <img src="{{ Storage::url($mainContent->photo_3) }}" --}}
+
+                            {{-- AFTER: StorageHelper --}}
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($mainContent->photo_3) }}"
                                  alt="Photo 3" class="img-fluid rounded"
                                  style="max-height: 200px; object-fit: cover; width: 100%;">
                         </div>

@@ -62,15 +62,27 @@
                                 <td>
                                     <div class="d-flex flex-wrap gap-1">
                                         @if($content->photo_1)
-                                            <img src="{{ Storage::url($content->photo_1) }}" alt="Photo 1"
+                                            {{-- BEFORE: Storage::url() --}}
+                                            {{-- <img src="{{ Storage::url($content->photo_1) }}" alt="Photo 1" --}}
+
+                                            {{-- AFTER: StorageHelper --}}
+                                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($content->photo_1) }}" alt="Photo 1"
                                                  class="img-thumbnail" style="width: 40px; height: 40px; object-fit: cover;">
                                         @endif
                                         @if($content->photo_2)
-                                            <img src="{{ Storage::url($content->photo_2) }}" alt="Photo 2"
+                                            {{-- BEFORE: Storage::url() --}}
+                                            {{-- <img src="{{ Storage::url($content->photo_2) }}" alt="Photo 2" --}}
+
+                                            {{-- AFTER: StorageHelper --}}
+                                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($content->photo_2) }}" alt="Photo 2"
                                                  class="img-thumbnail" style="width: 40px; height: 40px; object-fit: cover;">
                                         @endif
                                         @if($content->photo_3)
-                                            <img src="{{ Storage::url($content->photo_3) }}" alt="Photo 3"
+                                            {{-- BEFORE: Storage::url() --}}
+                                            {{-- <img src="{{ Storage::url($content->photo_3) }}" alt="Photo 3" --}}
+
+                                            {{-- AFTER: StorageHelper --}}
+                                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($content->photo_3) }}" alt="Photo 3"
                                                  class="img-thumbnail" style="width: 40px; height: 40px; object-fit: cover;">
                                         @endif
                                     </div>

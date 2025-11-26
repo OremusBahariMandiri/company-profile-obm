@@ -44,7 +44,11 @@
                                id="photo_1" name="photo_1" accept="image/*">
                         @if($mainContent->photo_1)
                             <div class="mt-2">
-                                <img src="{{ Storage::url($mainContent->photo_1) }}" alt="Current Photo 1"
+                                {{-- BEFORE: Storage::url() --}}
+                                {{-- <img src="{{ Storage::url($mainContent->photo_1) }}" alt="Current Photo 1" --}}
+
+                                {{-- AFTER: StorageHelper --}}
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($mainContent->photo_1) }}" alt="Current Photo 1"
                                      class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
                                 <p class="small text-muted mt-1">Foto saat ini. Upload file baru untuk menggantinya.</p>
                             </div>
@@ -86,7 +90,11 @@
                                id="photo_2" name="photo_2" accept="image/*">
                         @if($mainContent->photo_2)
                             <div class="mt-2">
-                                <img src="{{ Storage::url($mainContent->photo_2) }}" alt="Current Photo 2"
+                                {{-- BEFORE: Storage::url() --}}
+                                {{-- <img src="{{ Storage::url($mainContent->photo_2) }}" alt="Current Photo 2" --}}
+
+                                {{-- AFTER: StorageHelper --}}
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($mainContent->photo_2) }}" alt="Current Photo 2"
                                      class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
                                 <p class="small text-muted mt-1">Foto saat ini. Upload file baru untuk menggantinya.</p>
                             </div>
@@ -128,7 +136,11 @@
                                id="photo_3" name="photo_3" accept="image/*">
                         @if($mainContent->photo_3)
                             <div class="mt-2">
-                                <img src="{{ Storage::url($mainContent->photo_3) }}" alt="Current Photo 3"
+                                {{-- BEFORE: Storage::url() --}}
+                                {{-- <img src="{{ Storage::url($mainContent->photo_3) }}" alt="Current Photo 3" --}}
+
+                                {{-- AFTER: StorageHelper --}}
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($mainContent->photo_3) }}" alt="Current Photo 3"
                                      class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
                                 <p class="small text-muted mt-1">Foto saat ini. Upload file baru untuk menggantinya.</p>
                             </div>

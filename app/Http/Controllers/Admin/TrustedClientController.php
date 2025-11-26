@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TrustedClient;
-use Illuminate\Support\Facades\Storage;
+use App\Helpers\StorageHelper; // Import StorageHelper
 
 class TrustedClientController extends Controller
 {
@@ -38,9 +38,11 @@ class TrustedClientController extends Controller
 
         $data = $request->all();
 
-        // Handle photo upload
+        // Handle photo upload - UPDATED SECTION
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('trusted-clients', 'public');
+            // BEFORE: $request->file('photo')->store('trusted-clients', 'public');
+            // AFTER: StorageHelper
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'trusted-clients');
         }
 
         TrustedClient::create($data);
@@ -76,13 +78,17 @@ class TrustedClientController extends Controller
 
         $data = $request->all();
 
-        // Handle photo upload
+        // Handle photo upload - UPDATED SECTION
         if ($request->hasFile('photo')) {
             // Delete old photo
             if ($trustedClient->photo) {
-                Storage::disk('public')->delete($trustedClient->photo);
+                // BEFORE: Storage::disk('public')->delete($trustedClient->photo);
+                // AFTER: StorageHelper
+                StorageHelper::deleteFile($trustedClient->photo);
             }
-            $data['photo'] = $request->file('photo')->store('trusted-clients', 'public');
+            // BEFORE: $request->file('photo')->store('trusted-clients', 'public');
+            // AFTER: StorageHelper
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'trusted-clients');
         }
 
         $trustedClient->update($data);
@@ -96,9 +102,11 @@ class TrustedClientController extends Controller
      */
     public function destroy(TrustedClient $trustedClient)
     {
-        // Delete associated photo
+        // Delete associated photo - UPDATED SECTION
         if ($trustedClient->photo) {
-            Storage::disk('public')->delete($trustedClient->photo);
+            // BEFORE: Storage::disk('public')->delete($trustedClient->photo);
+            // AFTER: StorageHelper
+            StorageHelper::deleteFile($trustedClient->photo);
         }
 
         $trustedClient->delete();

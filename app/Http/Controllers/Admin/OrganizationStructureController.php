@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\StorageHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\OrganizationStructure;
@@ -55,7 +56,7 @@ class OrganizationStructureController extends Controller
 
         // Handle photo upload
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('organization', 'public');
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'organization');
         }
 
         OrganizationStructure::create($data);
@@ -95,9 +96,9 @@ class OrganizationStructureController extends Controller
         if ($request->hasFile('photo')) {
             // Delete old photo
             if ($organizationStructure->photo) {
-                Storage::disk('public')->delete($organizationStructure->photo);
+                StorageHelper::deleteFile($organizationStructure->photo);
             }
-            $data['photo'] = $request->file('photo')->store('organization', 'public');
+            $data['photo'] = StorageHelper::storeFile($request->file('photo'), 'organization');
         }
 
         $organizationStructure->update($data);
@@ -113,7 +114,7 @@ class OrganizationStructureController extends Controller
     {
         // Delete associated photo
         if ($organizationStructure->photo) {
-            Storage::disk('public')->delete($organizationStructure->photo);
+            StorageHelper::deleteFile($organizationStructure->photo);
         }
 
         $organizationStructure->delete();
