@@ -332,12 +332,7 @@ function initializeMap() {
                 content: createPopupContent("Lamongan Port", "", "Jln. Raya Deandels no.16 KM Sby 63.9, Desa Kemantren, Kec. Paciran, Kabupaten Lamongan"),
                 color: '#2C7A7B'
             },
-            {
-                coords: [-1.2745133965490056, 116.81244773977738],
-                title: "Balikpapan Port",
-                content: createPopupContent("Balikpapan Port", "", "Jln. Prapatan no.14 RT 26, Kelurahan Prapatan, Kecamatan Balikpapan Kota, East Kalimantan"),
-                color: '#2C7A7B'
-            }
+           
         ];
 
         // Add markers with enhanced interactions

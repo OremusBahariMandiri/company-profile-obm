@@ -929,92 +929,156 @@
                         coords: [-7.231826874003529, 112.72712398431823],
                         title: "Main Office - Surabaya",
                         content: `
-                            <div style="padding: 15px; min-width: 280px; font-family: 'Inter', sans-serif;">
-                                <div style="display: flex; align-items: center; margin-bottom: 12px;">
-                                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0B1426 0%, #D69E2E 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px;">
-                                        <i class="fas fa-building" style="color: white; font-size: 16px;"></i>
-                                    </div>
-                                    <div>
-                                        <h6 style="color: #0B1426; margin: 0; font-weight: 600; font-size: 16px;">Main Office</h6>
-                                        <p style="color: #38B2AC; margin: 0; font-size: 14px; font-weight: 500;">Surabaya</p>
-                                    </div>
-                                </div>
-                                <div style="background: linear-gradient(135deg, #F7FAFC 0%, #E2E8F0 100%); padding: 12px; border-radius: 8px; margin-bottom: 10px;">
-                                    <p style="margin: 0; font-size: 14px; color: #4A5568; line-height: 1.5;">
-                                        <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 8px;"></i>
-                                        Harbour Nine Business District Block C-16, Jln. Gresik no 16, Surabaya 60177
-                                    </p>
-                                </div>
-                                <div style="display: flex; gap: 8px;">
-                                    <a href="tel:0313557115" style="flex: 1; background: #38B2AC; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; text-align: center; font-size: 12px; font-weight: 600;">
-                                        <i class="fas fa-phone" style="margin-right: 4px;"></i> Call
-                                    </a>
-                                    <a href="mailto:commercial@oremus.co.id" style="flex: 1; background: #0B1426; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; text-align: center; font-size: 12px; font-weight: 600;">
-                                        <i class="fas fa-envelope" style="margin-right: 4px;"></i> Email
-                                    </a>
-                                </div>
-                            </div>
-                        `,
-                        color: '#0B1426',
-                        isMain: true
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Main Office - Surabaya</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Harbour Nine Business Districy Block C-16. Jln. Gresik no 16, Surabaya 60177</p>
+            </div>
+        `,
+                        color: '#dc3545' // Red for main office
                     },
                     {
                         coords: [-7.168208955469719, 112.66021777824521],
                         title: "Gresik Port",
                         content: `
-                            <div style="padding: 12px; min-width: 260px; font-family: 'Inter', sans-serif;">
-                                <h6 style="color: #0B1426; margin-bottom: 8px; font-weight: 600;">Gresik Port</h6>
-                                <p style="margin: 5px 0; font-size: 13px; color: #4A5568; line-height: 1.4;">
-                                    <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 6px;"></i>
-                                    Jl. Lombok No.7 Blok A, RT.02/RW.01, Sidorukun, Kec. Gresik, Kabupaten Gresik, Jawa Timur 61112
-                                </p>
-                            </div>
-                        `,
-                        color: '#2C7A7B'
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Gresik Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Jl. Lombok No.7 Blok A, RT.02/RW.01,  Sidorukun, Kec. Gresik, Kabupaten Gresik, Jawa Timur 61112 - Indonesia</p>
+            </div>
+        `,
+                        color: '#007bff'
                     },
                     {
                         coords: [-6.700637388960823, 111.32297505830293],
                         title: "Rembang Port",
                         content: `
-                            <div style="padding: 12px; min-width: 260px; font-family: 'Inter', sans-serif;">
-                                <h6 style="color: #0B1426; margin-bottom: 8px; font-weight: 600;">Rembang Port</h6>
-                                <p style="margin: 5px 0; font-size: 13px; color: #4A5568; line-height: 1.4;">
-                                    <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 6px;"></i>
-                                    Kelurahan Magersari RT 02 RW 02, Kecamatan Rembang, Kabupaten Rembang, Central Java
-                                </p>
-                            </div>
-                        `,
-                        color: '#2C7A7B'
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Rembang Branch</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Kelurahan Magersari RT 02 RW 02, Kecamatan Rembang, Kabupaten Rembang, Central Java - Indonesia </p>
+            </div>
+        `,
+                        color: '#007bff'
                     },
                     {
                         coords: [-6.876628069969104, 112.40721246864304],
                         title: "Lamongan Port",
                         content: `
-                            <div style="padding: 12px; min-width: 260px; font-family: 'Inter', sans-serif;">
-                                <h6 style="color: #0B1426; margin-bottom: 8px; font-weight: 600;">Lamongan Port</h6>
-                                <p style="margin: 5px 0; font-size: 13px; color: #4A5568; line-height: 1.4;">
-                                    <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 6px;"></i>
-                                    Jln. Raya Deandels no.16 KM Sby 63.9, Desa Kemantren, Kec. Paciran, Kabupaten Lamongan
-                                </p>
-                            </div>
-                        `,
-                        color: '#2C7A7B'
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Lamongan Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Jln. Raya Deandels no.16 KM Sby 63.9 RT 007 RW 001, Desa Kemantren, Kec. Paciran, Kabupaten Lamongan, East Java - Indonesia </p>
+            </div>
+        `,
+                        color: '#007bff'
                     },
                     {
                         coords: [-1.2745133965490056, 116.81244773977738],
                         title: "Balikpapan Port",
                         content: `
-                            <div style="padding: 12px; min-width: 260px; font-family: 'Inter', sans-serif;">
-                                <h6 style="color: #0B1426; margin-bottom: 8px; font-weight: 600;">Balikpapan Port</h6>
-                                <p style="margin: 5px 0; font-size: 13px; color: #4A5568; line-height: 1.4;">
-                                    <i class="fas fa-map-marker-alt" style="color: #38B2AC; margin-right: 6px;"></i>
-                                    Jln. Prapatan no.14 RT 26, Kelurahan Prapatan, Kecamatan Balikpapan Kota, East Kalimantan
-                                </p>
-                            </div>
-                        `,
-                        color: '#2C7A7B'
-                    }
-                    // Add other offices following the same pattern if needed
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Balikpapan Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Jln. Prapatan no.14 RT 26, Kelurahan Prapatan, Kecamatan Balikpapan Kota, East Kalimantan - Indonesia </p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
+                    {
+                        coords: [-6.886993761866401, 113.08010926494315],
+                        title: "Telaga Biru Port",
+                        content: `
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">⚓ Telaga Biru Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Jln. Pelabuhan no.65B Telaga Biru, Kecamatan Tanjung Bumi, Kabupaten Bangkalan - Madura East Java - Indonesia</p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
+                    {
+                        coords: [-0.995964927487794, 117.13179765141979],
+                        title: "Samboja Port",
+                        content: `
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Samboja Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Perumahan Bumi Pemedas Permai Blok J no.11 RT 008, Kel. Teluk Pemedas, Kec. Samboja, Kabupaten Kutai Kartanegara, East Kalimantan - Indonesia</p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
+                    {
+                        coords: [-5.772891758052744, 112.65849764487403],
+                        title: "Bawean Port",
+                        content: `
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Bawean Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Jln. Gurdam Sak  Gang Masjid A awabin no.183 RT 004 RW 004, Dusun Telok, Desa Sungai Teluk, Kec. Sangkapura, Kab. Gresik, East Java - Indonesia</p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
+                    {
+                        coords: [-0.4925701738401669, 117.16118611094073],
+                        title: "Samarinda Port",
+                        content: `
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Samarinda Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Jln. Marsda A. Saleh Gg.5 Blok B no.22 RT 40, Kel. Sidomulyo, Kec. Samarinda Ilir, Kota Samarinda, East Kalimantan - Indonesia</p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
+                    {
+                        coords: [-7.8564786301517975, 113.30056320761658],
+                        title: "Probolinggo Port",
+                        content: `
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Probolinggo Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Dusun Krajan RT 012 RW 003, Desa Leces, Kecamatan Leces, Kabupaten Probolinggo, East Java - Indonesia</p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
+                    {
+                        coords: [-5.147088521798442, 119.41224766864308],
+                        title: "Makassar Port",
+                        content: `
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Makassar Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Perumahan Green River View, Cluster Laurus, Jalan Scarlet Leaf no.7, Kecamatan Tamalate, Kota Makassar, South Sulawesi - Indonesia</p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
+                    {
+                        coords: [0.11936060325602912, 117.48324551094059],
+                        title: "Bontang Port",
+                        content: `
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Bontang Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Jln. Selamat Makssar, Rt 24 No 43, Kel Tanjung Laut, Kec Bontang Selatan, Kota Bontang </p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
+                    {
+                        coords: [-6.111235104481959, 106.88275958027936],
+                        title: "Tanjung Priok Port",
+                        content: `
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Tanjung Priok Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Jln. Tenggiri no. 103A Tanjung Priok, Jakarta Utara 14310 DKI Jakarta - Indonesia</p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
+                    {
+                        coords: [-3.460604429629171, 116.0017348244899],
+                        title: "Batulicin",
+                        content: `
+            <div style="padding: 10px; min-width: 250px;">
+                <h6 style="color: #0A3D62; margin-bottom: 10px; font-weight: bold;">Tanjung Priok Port</h6>
+                <p style="margin: 5px 0; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color: #3AB795; margin-right: 8px;"></i>Jalan Durian II RT. 17 Kel. Batulicin Kec. Batulicin Kab. Tanah Bumbu Prov. KalSel</p>
+            </div>
+        `,
+                        color: '#007bff'
+                    },
                 ];
 
                 // Add markers with enhanced styling
@@ -1121,7 +1185,7 @@
                     if (perfData) {
                         console.log(
                             `Page load time: ${Math.round(perfData.loadEventEnd - perfData.loadEventStart)}ms`
-                            );
+                        );
                     }
                 }, 0);
             });

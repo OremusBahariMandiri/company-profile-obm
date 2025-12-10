@@ -824,6 +824,7 @@
                             </li>
                             <li><a href="#location"><i class="fas fa-anchor me-2"></i><strong>Balikpapan</strong><br></a>
                             </li>
+                            
                         @endif
                     </ul>
                 </div>
