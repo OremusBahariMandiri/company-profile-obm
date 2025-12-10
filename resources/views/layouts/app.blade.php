@@ -8,9 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>PT. Oremus Bahari Mandiri - Professional Maritime Services</title>
 
+
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="PT. Oremus Bahari Mandiri - Leading maritime services company providing ship handling, provision supply, medivac operations, and crew handling across Indonesian ports.">
-    <meta name="keywords" content="maritime services, ship agency, Indonesia ports, ship handling, provision supply, medivac operations">
+    <meta name="description"
+        content="PT. Oremus Bahari Mandiri - Leading maritime services company providing ship handling, provision supply, medivac operations, and crew handling across Indonesian ports.">
+    <meta name="keywords"
+        content="maritime services, ship agency, Indonesia ports, ship handling, provision supply, medivac operations">
     <meta name="author" content="PT. Oremus Bahari Mandiri">
 
     <!-- Open Graph Meta Tags -->
@@ -22,13 +26,16 @@
     <!-- Google Fonts - Professional Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon3.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon3.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Theme Meta Tags -->
     <meta name="theme-color" content="#0B1426">
@@ -56,57 +63,57 @@
 
     <!-- PERBAIKAN KHUSUS: CSS untuk tombol carousel kanan -->
     <style>
- /* OVERRIDE FINAL - MEMAKSA CONTROLS BERFUNGSI */
- body .carousel-control-prev,
-    body .carousel-control-next,
-    html .carousel-control-prev,
-    html .carousel-control-next {
-        z-index: 99999 !important;
-        pointer-events: all !important;
-        cursor: pointer !important;
-    }
+        /* OVERRIDE FINAL - MEMAKSA CONTROLS BERFUNGSI */
+        body .carousel-control-prev,
+        body .carousel-control-next,
+        html .carousel-control-prev,
+        html .carousel-control-next {
+            z-index: 99999 !important;
+            pointer-events: all !important;
+            cursor: pointer !important;
+        }
 
-    body .carousel-overlay,
-    html .carousel-overlay {
-        pointer-events: none !important;
-    }
+        body .carousel-overlay,
+        html .carousel-overlay {
+            pointer-events: none !important;
+        }
 
-    body .carousel-content,
-    html .carousel-content,
-    body .carousel-content *,
-    html .carousel-content * {
-        pointer-events: none !important;
-    }
+        body .carousel-content,
+        html .carousel-content,
+        body .carousel-content *,
+        html .carousel-content * {
+            pointer-events: none !important;
+        }
 
-    body .activity-tabs .nav-link,
-    html .activity-tabs .nav-link {
-        z-index: 9999 !important;
-        pointer-events: all !important;
-        cursor: pointer !important;
-    }
+        body .activity-tabs .nav-link,
+        html .activity-tabs .nav-link {
+            z-index: 9999 !important;
+            pointer-events: all !important;
+            cursor: pointer !important;
+        }
 
-    /* Custom popup styles */
-    .custom-popup .leaflet-popup-content-wrapper {
-        border-radius: 12px !important;
-        box-shadow: 0 8px 30px rgba(11, 20, 38, 0.15) !important;
-        border: 1px solid rgba(56, 178, 172, 0.2) !important;
-    }
+        /* Custom popup styles */
+        .custom-popup .leaflet-popup-content-wrapper {
+            border-radius: 12px !important;
+            box-shadow: 0 8px 30px rgba(11, 20, 38, 0.15) !important;
+            border: 1px solid rgba(56, 178, 172, 0.2) !important;
+        }
 
-    .custom-tooltip {
-        background: var(--navy-primary) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-        font-family: 'Inter', sans-serif !important;
-        font-weight: 500 !important;
-        font-size: 13px !important;
-        padding: 8px 12px !important;
-        box-shadow: 0 4px 15px rgba(11, 20, 38, 0.3) !important;
-    }
+        .custom-tooltip {
+            background: var(--navy-primary) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 500 !important;
+            font-size: 13px !important;
+            padding: 8px 12px !important;
+            box-shadow: 0 4px 15px rgba(11, 20, 38, 0.3) !important;
+        }
 
-    .info-control {
-        pointer-events: auto !important;
-    }
+        .info-control {
+            pointer-events: auto !important;
+        }
     </style>
 </head>
 
@@ -327,7 +334,7 @@
             }
         })();
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, initializing scripts...');
 
             // Initialize AOS with improved settings
@@ -351,8 +358,7 @@
                 pauseOnHover: true,
                 pauseOnFocus: true,
                 accessibility: true,
-                responsive: [
-                    {
+                responsive: [{
                         breakpoint: 1400,
                         settings: {
                             slidesToShow: 4,
@@ -405,11 +411,13 @@
                 lastScrollY = window.scrollY;
             }
 
-            window.addEventListener('scroll', updateNavbar, { passive: true });
+            window.addEventListener('scroll', updateNavbar, {
+                passive: true
+            });
 
             // Enhanced smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+                anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
@@ -419,7 +427,9 @@
                         // Close mobile navbar if open
                         const navbarCollapse = document.querySelector('.navbar-collapse');
                         if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-                            const bsCollapse = new bootstrap.Collapse(navbarCollapse, { hide: true });
+                            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                                hide: true
+                            });
                         }
 
                         // Smooth scroll to target
@@ -473,7 +483,9 @@
                         e.stopPropagation();
                         console.log(`Tab ${index} triggered with event:`, eventType);
                         activateTab(this);
-                    }, { passive: false });
+                    }, {
+                        passive: false
+                    });
                 });
 
                 tab.addEventListener('keydown', function(e) {
@@ -485,7 +497,7 @@
             });
 
             // Initialize map with delay for better loading
-            setTimeout(function () {
+            setTimeout(function() {
                 initMap();
             }, 200);
 
@@ -551,17 +563,19 @@
                 });
             };
 
-            window.addEventListener('scroll', handleScrollAnimation, { passive: true });
+            window.addEventListener('scroll', handleScrollAnimation, {
+                passive: true
+            });
 
             // Enhanced branch card hover effects
             const branchCards = document.querySelectorAll('.branch-card');
             branchCards.forEach(card => {
-                card.addEventListener('mouseenter', function () {
+                card.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-8px)';
                     this.style.boxShadow = '0 15px 40px rgba(11, 20, 38, 0.18)';
                 });
 
-                card.addEventListener('mouseleave', function () {
+                card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0)';
                     this.style.boxShadow = '0 4px 20px rgba(11, 20, 38, 0.08)';
                 });
@@ -602,12 +616,14 @@
             };
 
             // Optimized scroll handling
-            window.addEventListener('scroll', throttle(function () {
+            window.addEventListener('scroll', throttle(function() {
                 AOS.refresh();
                 if (window.shipAgencyMap) {
                     window.shipAgencyMap.invalidateSize();
                 }
-            }, 100), { passive: true });
+            }, 100), {
+                passive: true
+            });
 
             // Enhanced accessibility
             document.addEventListener('keydown', function(e) {
@@ -640,7 +656,7 @@
             if (!whatsappButton || !chatBox) return;
 
             // Open/close chat box
-            whatsappButton.addEventListener('click', function () {
+            whatsappButton.addEventListener('click', function() {
                 chatBox.classList.toggle('active');
                 const badge = whatsappButton.querySelector('.notification-badge');
                 if (badge) badge.style.display = 'none';
@@ -655,7 +671,7 @@
             });
 
             if (closeButton) {
-                closeButton.addEventListener('click', function () {
+                closeButton.addEventListener('click', function() {
                     chatBox.classList.remove('active');
                 });
             }
@@ -697,28 +713,36 @@
 
                 // Improved response logic
                 if (lowerText.includes('service') || lowerText.includes('what you do')) {
-                    response = "We offer comprehensive maritime services including ship handling, provision supply, medivac operations, and crew handling. Which service interests you?";
+                    response =
+                        "We offer comprehensive maritime services including ship handling, provision supply, medivac operations, and crew handling. Which service interests you?";
                     quickReplies = ['Ship Handling', 'Provision Supply', 'Medivac', 'Crew Handling'];
                 } else if (lowerText.includes('ship handling')) {
-                    response = "Our ship handling services include acting as general agents, local agents, and owner protecting agents for vessels including tankers, bulk cargo, cruise ships, and offshore vessels.";
+                    response =
+                        "Our ship handling services include acting as general agents, local agents, and owner protecting agents for vessels including tankers, bulk cargo, cruise ships, and offshore vessels.";
                     quickReplies = ['Other Services', 'Contact Info', 'Speak to Agent'];
                 } else if (lowerText.includes('provision')) {
-                    response = "We provide comprehensive provision supply services including food, fresh water, bunker fuel, and essential supplies to vessels, even when anchored.";
+                    response =
+                        "We provide comprehensive provision supply services including food, fresh water, bunker fuel, and essential supplies to vessels, even when anchored.";
                     quickReplies = ['Other Services', 'Contact Info', 'Speak to Agent'];
                 } else if (lowerText.includes('medivac') || lowerText.includes('medical')) {
-                    response = "Our medivac operations support P&I clubs and ship owners in emergencies, including sick crew management, deceased crew handling, and medical evacuations.";
+                    response =
+                        "Our medivac operations support P&I clubs and ship owners in emergencies, including sick crew management, deceased crew handling, and medical evacuations.";
                     quickReplies = ['Other Services', 'Contact Info', 'Speak to Agent'];
                 } else if (lowerText.includes('crew')) {
-                    response = "We handle all crew management aspects including crew changes, visa processing, work permits, and repatriation for domestic and foreign crew.";
+                    response =
+                        "We handle all crew management aspects including crew changes, visa processing, work permits, and repatriation for domestic and foreign crew.";
                     quickReplies = ['Other Services', 'Contact Info', 'Speak to Agent'];
                 } else if (lowerText.includes('contact') || lowerText.includes('office')) {
-                    response = "Main Office: Harbour Nine Business District Block C-16, Jln. Gresik no 16, Surabaya 60177. Phone: 0313557115. Email: commercial@oremus.co.id";
+                    response =
+                        "Main Office: Harbour Nine Business District Block C-16, Jln. Gresik no 16, Surabaya 60177. Phone: 0313557115. Email: commercial@oremus.co.id";
                     quickReplies = ['Branch Offices', 'Services', 'Speak to Agent'];
                 } else if (lowerText.includes('port') || lowerText.includes('branch')) {
-                    response = "We operate in major Indonesian ports: Surabaya, Gresik, Rembang, Lamongan, Balikpapan, Telaga Biru Madura, Samboja, Bawean, Samarinda, Probolinggo, Makassar, Bontang, and Tanjung Priok.";
+                    response =
+                        "We operate in major Indonesian ports: Surabaya, Gresik, Rembang, Lamongan, Balikpapan, Telaga Biru Madura, Samboja, Bawean, Samarinda, Probolinggo, Makassar, Bontang, and Tanjung Priok.";
                     quickReplies = ['Main Office', 'Services', 'Speak to Agent'];
                 } else if (lowerText.includes('agent') || lowerText.includes('human')) {
-                    response = "I'll connect you with our team. Click below to start a WhatsApp chat with our representatives.";
+                    response =
+                        "I'll connect you with our team. Click below to start a WhatsApp chat with our representatives.";
                     quickReplies = ['Connect via WhatsApp'];
                 } else if (lowerText.includes('connect') || lowerText.includes('whatsapp')) {
                     window.open('https://wa.me/6285186841616', '_blank');
@@ -733,7 +757,8 @@
                 } else if (lowerText.includes('bye') || lowerText.includes('no thanks')) {
                     response = "Thank you for contacting PT. Oremus Bahari Mandiri. Have a great day!";
                 } else {
-                    response = "I'd be happy to help! Please choose from the options below or ask about our maritime services.";
+                    response =
+                        "I'd be happy to help! Please choose from the options below or ask about our maritime services.";
                     quickReplies = ['Services', 'Contact Info', 'Ports Coverage', 'Talk to Agent'];
                 }
 
@@ -758,7 +783,7 @@
                         const button = document.createElement('button');
                         button.className = 'quick-reply-button';
                         button.textContent = reply;
-                        button.addEventListener('click', function () {
+                        button.addEventListener('click', function() {
                             sendMessage(this.textContent);
                             this.parentElement.remove();
                         });
@@ -773,11 +798,11 @@
 
             // Send button and enter key events
             if (sendButton && chatInput) {
-                sendButton.addEventListener('click', function () {
+                sendButton.addEventListener('click', function() {
                     sendMessage(chatInput.value);
                 });
 
-                chatInput.addEventListener('keypress', function (e) {
+                chatInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter' && !e.shiftKey) {
                         e.preventDefault();
                         sendMessage(this.value);
@@ -785,7 +810,7 @@
                 });
 
                 // Auto-resize textarea
-                chatInput.addEventListener('input', function () {
+                chatInput.addEventListener('input', function() {
                     this.style.height = 'auto';
                     this.style.height = Math.min(this.scrollHeight, 120) + 'px';
                 });
@@ -793,7 +818,7 @@
 
             // Quick reply buttons
             quickReplyButtons.forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function() {
                     sendMessage(this.textContent);
                 });
             });
@@ -900,8 +925,7 @@
                 };
 
                 // Enhanced branch office locations (using original data but with improved styling)
-                const branchOffices = [
-                    {
+                const branchOffices = [{
                         coords: [-7.231826874003529, 112.72712398431823],
                         title: "Main Office - Surabaya",
                         content: `
@@ -1031,7 +1055,9 @@
                 }).addTo(map);
 
                 // Enhanced info control
-                const info = L.control({ position: 'topright' });
+                const info = L.control({
+                    position: 'topright'
+                });
                 info.onAdd = function(map) {
                     this._div = L.DomUtil.create('div', 'info-control');
                     this._div.innerHTML = `
@@ -1093,7 +1119,9 @@
                 setTimeout(() => {
                     const perfData = performance.getEntriesByType('navigation')[0];
                     if (perfData) {
-                        console.log(`Page load time: ${Math.round(perfData.loadEventEnd - perfData.loadEventStart)}ms`);
+                        console.log(
+                            `Page load time: ${Math.round(perfData.loadEventEnd - perfData.loadEventStart)}ms`
+                            );
                     }
                 }, 0);
             });

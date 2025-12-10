@@ -8,9 +8,15 @@
     <title>@yield('title', 'Maritime Dashboard')</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="{{Storage::url('/images/logo.png')}}">
+    <link rel="icon" type="image/svg+xml" href="{{ Storage::url('/images/logo.png') }}">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-    <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=">
+    <link rel="shortcut icon"
+        href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=">
     <style>
         * {
             margin: 0;
@@ -318,8 +324,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
     @stack('styles')
@@ -338,79 +351,79 @@
 
             <ul class="components">
                 <li>
-                    <a href="{{route('home')}}">
+                    <a href="{{ route('home') }}">
                         <i class="fas fa-home"></i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('main-content.index')}}">
+                    <a href="{{ route('main-content.index') }}">
                         <i class="fas fa-images"></i>
                         <span>Main Content</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('director-welcome.index')}}">
+                    <a href="{{ route('director-welcome.index') }}">
                         <i class="fas fa-user-tie"></i>
                         <span>Director Welcome</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('services.index')}}">
+                    <a href="{{ route('services.index') }}">
                         <i class="fas fa-concierge-bell"></i>
                         <span>Our Services</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('achievements.index')}}">
+                    <a href="{{ route('achievements.index') }}">
                         <i class="fas fa-trophy"></i>
                         <span>Achievements</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('certification.index')}}">
+                    <a href="{{ route('certification.index') }}">
                         <i class="fas fa-certificate"></i>
                         <span>Certification</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('news.index')}}">
+                    <a href="{{ route('news.index') }}">
                         <i class="fas fa-newspaper"></i>
                         <span>News</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('our-team.index')}}">
+                    <a href="{{ route('our-team.index') }}">
                         <i class="fas fa-users"></i>
                         <span>Our Team</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('organization-structure.index')}}">
+                    <a href="{{ route('organization-structure.index') }}">
                         <i class="fas fa-sitemap"></i>
                         <span>Organization Structure</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('career.index')}}">
+                    <a href="{{ route('career.index') }}">
                         <i class="fas fa-briefcase"></i>
                         <span>Career</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('activities.index')}}">
+                    <a href="{{ route('activities.index') }}">
                         <i class="fas fa-calendar-alt"></i>
                         <span>Activities</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('trusted-clients.index')}}">
+                    <a href="{{ route('trusted-clients.index') }}">
                         <i class="fas fa-handshake"></i>
                         <span>Our Clients</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('branches.index')}}">
+                    <a href="{{ route('branches.index') }}">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Branch</span>
                     </a>
@@ -448,12 +461,13 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
+                                            onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
                                             <i class="fas fa-sign-out-alt me-2"></i> {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                             @csrf
                                         </form>
                                     </li>
@@ -470,7 +484,8 @@
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <i class="fas fa-check-circle me-2"></i>
                         {{ session('status') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
                     </div>
                 @endif
 
@@ -482,8 +497,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
+        $(document).ready(function() {
+            $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
                 $('#content').toggleClass('active');
             });
