@@ -99,7 +99,7 @@
                                         'provision-supply' => 'fa-box',
                                         'medivac' => 'fa-ambulance',
                                         'crew-change' => 'fa-users',
-                                        'oil-&-gas-support' => 'fa-oil-can'
+                                        'oil-gas-support' => 'fa-oil-can'
                                     ];
                                     $categoryColors = [
                                         'agency' => 'primary',
@@ -108,7 +108,7 @@
                                         'provision-supply' => 'warning',
                                         'medivac' => 'danger',
                                         'crew-change' => 'secondary',
-                                        'oil-&-gas-support' => 'dark'
+                                        'oil-gas-support' => 'dark'
                                     ];
                                 @endphp
                                 @foreach($categories as $key => $value)

@@ -91,7 +91,7 @@
                 <div class="card-body text-center">
                     <i class="fas fa-oil-can fa-2x mb-2"></i>
                     <h6>Oil & Gas Support</h6>
-                    <h4>{{ $groupedActivities->get('oil-&-gas-support', collect())->count() }}</h4>
+                    <h4>{{ $groupedActivities->get('oil-gas-support', collect())->count() }}</h4>
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@
                                             'provision-supply' => 'warning',
                                             'medivac' => 'danger',
                                             'crew-change' => 'secondary',
-                                            'oil-&-gas-support' => 'dark',
+                                            'oil-gas-support' => 'dark',
                                         ];
                                         $color = $categoryColors[$activity->category] ?? 'secondary';
                                     @endphp
