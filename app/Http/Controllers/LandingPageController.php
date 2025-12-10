@@ -584,7 +584,8 @@ class LandingPageController extends Controller
             'ship-to-ship' => [],
             'provision-supply' => [],
             'medivac' => [],
-            'crew-change' => []
+            'crew-change' => [],
+            'oil-&-gas-support' => []
         ];
 
         // Group activities by category
@@ -622,6 +623,10 @@ class LandingPageController extends Controller
                 ['image' => 'images/activities/mo2.png', 'title' => 'Professional Medivac Operations']
             ],
             'crew-change' => [
+                ['image' => 'images/activities/cc1.jpg', 'title' => 'International Crew Change Services'],
+                ['image' => 'images/activities/cc2.jpg', 'title' => 'Crew Transportation & Logistics']
+            ],
+            'oil-&-gas-support' => [
                 ['image' => 'images/activities/cc1.jpg', 'title' => 'International Crew Change Services'],
                 ['image' => 'images/activities/cc2.jpg', 'title' => 'Crew Transportation & Logistics']
             ]
