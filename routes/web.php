@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\OrganizationStructureController;
 use App\Http\Controllers\Admin\OurActivityController;
 use App\Http\Controllers\Admin\OurTeamController;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\publicNewsController;
+use App\Http\Controllers\PublicNewsController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TrustedClientController;
 use App\Http\Controllers\CaptchaController;
