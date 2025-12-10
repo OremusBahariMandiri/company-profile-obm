@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Verification</title>
+    <title>PT. Oremus Bahari Mandiri</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,25 +24,29 @@
             justify-content: center;
             align-items: center;
         }
+
         .captcha-container {
             background: white;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
             max-width: 400px;
             width: 90%;
         }
+
         .captcha-title {
             color: #333;
             margin-bottom: 20px;
             font-size: 24px;
         }
+
         .captcha-description {
             color: #666;
             margin-bottom: 30px;
             line-height: 1.5;
         }
+
         .captcha-checkbox {
             display: flex;
             align-items: center;
@@ -44,16 +57,19 @@
             border-radius: 5px;
             background: #f9f9f9;
         }
+
         .captcha-checkbox input[type="checkbox"] {
             width: 20px;
             height: 20px;
             margin-right: 10px;
         }
+
         .captcha-checkbox label {
             font-size: 16px;
             color: #333;
             cursor: pointer;
         }
+
         .submit-btn {
             background: #667eea;
             color: white;
@@ -64,36 +80,42 @@
             cursor: pointer;
             transition: background 0.3s;
         }
+
         .submit-btn:hover {
             background: #5a67d8;
         }
+
         .submit-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
         }
+
         .error-message {
             color: #e53e3e;
             margin-top: 10px;
             font-size: 14px;
         }
+
         .shield-icon {
             font-size: 48px;
             margin-bottom: 20px;
         }
     </style>
 </head>
+
 <body>
     <div class="captcha-container">
         <div class="shield-icon">🛡️</div>
-        <h2 class="captcha-title">Security Verification</h2>
+        <h2 class="captcha-title">Welcome to PT Oremus Bahari Mandiri</h2>
         <p class="captcha-description">
-            To protect our website from spam and abuse, please verify that you are a human visitor.
+            Please complete the verification below to continue to our main page.
         </p>
 
         <form method="POST" action="{{ route('captcha.verify') }}" id="captchaForm">
             @csrf
             <div class="captcha-checkbox">
-                <input type="checkbox" id="captcha_verified" name="captcha_verified" value="1" onchange="toggleSubmit()">
+                <input type="checkbox" id="captcha_verified" name="captcha_verified" value="1"
+                    onchange="toggleSubmit()">
                 <label for="captcha_verified">I'm not a robot</label>
             </div>
 
@@ -108,7 +130,6 @@
             </div>
         @endif
     </div>
-
     <script>
         function toggleSubmit() {
             const checkbox = document.getElementById('captcha_verified');
@@ -127,4 +148,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -5,12 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $news->title }} - PT. Oremus Bahari Mandiri</title>
-    <link rel="icon" href="/favicon3.png" type="image/x-icon">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -81,7 +88,8 @@
             transition: all 0.3s ease;
         }
 
-        .nav-link:hover:before, .nav-link.active:before {
+        .nav-link:hover:before,
+        .nav-link.active:before {
             width: 100%;
         }
 
@@ -300,7 +308,8 @@
             padding: 0 20px;
         }
 
-        .lightbox-prev, .lightbox-next {
+        .lightbox-prev,
+        .lightbox-next {
             color: white;
             font-size: 30px;
             cursor: pointer;
@@ -315,7 +324,8 @@
             transition: background 0.3s ease;
         }
 
-        .lightbox-prev:hover, .lightbox-next:hover {
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
             background: rgba(0, 0, 0, 0.8);
         }
 
@@ -371,7 +381,8 @@
             margin: 30px 0;
         }
 
-        .news-body ul, .news-body ol {
+        .news-body ul,
+        .news-body ol {
             margin: 20px 0 20px 20px;
         }
 
@@ -497,7 +508,8 @@
             transition: all 0.3s ease;
         }
 
-        .tag:hover, .tag.active {
+        .tag:hover,
+        .tag.active {
             background-color: var(--ocean-green);
             color: white;
             transform: translateY(-3px);
@@ -821,9 +833,11 @@
             0% {
                 transform: translateX(0) translateZ(0) scaleY(1);
             }
+
             50% {
                 transform: translateX(-25%) translateZ(0) scaleY(0.8);
             }
+
             100% {
                 transform: translateX(-50%) translateZ(0) scaleY(1);
             }
@@ -843,15 +857,19 @@
             0% {
                 transform: translateX(0) rotate(0deg);
             }
+
             50% {
                 transform: translateX(calc(100vw + 150px)) rotate(2deg);
             }
+
             50.1% {
                 transform: translateX(calc(100vw + 150px)) rotate(2deg) scaleX(-1);
             }
+
             99.9% {
                 transform: translateX(0) rotate(0deg) scaleX(-1);
             }
+
             100% {
                 transform: translateX(0) rotate(0deg) scaleX(1);
             }
@@ -1151,41 +1169,47 @@
                         // This example assumes $news->images is an array of image paths
                         $images = [$news->image];
                         // Add additional images if they exist
-                        if(isset($news->image2) && !empty($news->image2)) {
+                        if (isset($news->image2) && !empty($news->image2)) {
                             $images[] = $news->image2;
                         }
-                        if(isset($news->image3) && !empty($news->image3)) {
+                        if (isset($news->image3) && !empty($news->image3)) {
                             $images[] = $news->image3;
                         }
                         $imageCount = count($images);
                     @endphp
 
-                    @if($imageCount == 1)
+                    @if ($imageCount == 1)
                         <!-- Single Image Layout -->
                         <div class="single-image-layout">
-                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[0]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="0">
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[0]) }}"
+                                alt="{{ $news->title }}" class="gallery-image" data-index="0">
                         </div>
                     @elseif($imageCount == 2)
                         <!-- Two Images Layout -->
                         <div class="two-images-layout">
                             <div class="image-container">
-                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[0]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="0">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[0]) }}"
+                                    alt="{{ $news->title }}" class="gallery-image" data-index="0">
                             </div>
                             <div class="image-container">
-                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[1]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="1">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[1]) }}"
+                                    alt="{{ $news->title }}" class="gallery-image" data-index="1">
                             </div>
                         </div>
                     @elseif($imageCount == 3)
                         <!-- Three Images Layout -->
                         <div class="three-images-layout">
                             <div class="image-container main-image">
-                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[0]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="0">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[0]) }}"
+                                    alt="{{ $news->title }}" class="gallery-image" data-index="0">
                             </div>
                             <div class="image-container">
-                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[1]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="1">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[1]) }}"
+                                    alt="{{ $news->title }}" class="gallery-image" data-index="1">
                             </div>
                             <div class="image-container">
-                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[2]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="2">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[2]) }}"
+                                    alt="{{ $news->title }}" class="gallery-image" data-index="2">
                             </div>
                         </div>
                     @endif
@@ -1215,16 +1239,20 @@
                         <div class="social-share">
                             <span class="share-label">Share this article:</span>
                             <div class="share-buttons">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('publicnews.show', $news->id)) }}" target="_blank" class="share-btn btn-facebook" aria-label="Share on Facebook">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('publicnews.show', $news->id)) }}"
+                                    target="_blank" class="share-btn btn-facebook" aria-label="Share on Facebook">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('publicnews.show', $news->id)) }}&text={{ urlencode($news->title) }}" target="_blank" class="share-btn btn-twitter" aria-label="Share on Twitter">
+                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('publicnews.show', $news->id)) }}&text={{ urlencode($news->title) }}"
+                                    target="_blank" class="share-btn btn-twitter" aria-label="Share on Twitter">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(route('publicnews.show', $news->id)) }}&title={{ urlencode($news->title) }}" target="_blank" class="share-btn btn-linkedin" aria-label="Share on LinkedIn">
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(route('publicnews.show', $news->id)) }}&title={{ urlencode($news->title) }}"
+                                    target="_blank" class="share-btn btn-linkedin" aria-label="Share on LinkedIn">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="mailto:?subject={{ $news->title }}&body={{ urlencode(route('publicnews.show', $news->id)) }}" class="share-btn btn-email" aria-label="Share via Email">
+                                <a href="mailto:?subject={{ $news->title }}&body={{ urlencode(route('publicnews.show', $news->id)) }}"
+                                    class="share-btn btn-email" aria-label="Share via Email">
                                     <i class="fas fa-envelope"></i>
                                 </a>
                             </div>
@@ -1233,27 +1261,30 @@
                 </div>
 
                 <div class="news-sidebar">
-                    @if($relatedNews->count() > 0)
-                    <div class="sidebar-widget" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                        <div class="widget-header">
-                            <i class="fas fa-newspaper"></i> Related Articles
-                        </div>
-                        <div class="widget-content">
-                            <div class="related-list">
-                                @foreach($relatedNews as $related)
-                                <a href="{{ route('publicnews.show', $related->id) }}" class="related-item">
-                                    <div class="related-img">
-                                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($related->image) }}" alt="{{ $related->title }}">
-                                    </div>
-                                    <div class="related-content">
-                                        <span class="related-date">{{ \Carbon\Carbon::parse($related->created_at)->format('d M Y') }}</span>
-                                        <h4 class="related-title">{{ $related->title }}</h4>
-                                    </div>
-                                </a>
-                                @endforeach
+                    @if ($relatedNews->count() > 0)
+                        <div class="sidebar-widget" data-aos="fade-left" data-aos-duration="1000"
+                            data-aos-delay="200">
+                            <div class="widget-header">
+                                <i class="fas fa-newspaper"></i> Related Articles
+                            </div>
+                            <div class="widget-content">
+                                <div class="related-list">
+                                    @foreach ($relatedNews as $related)
+                                        <a href="{{ route('publicnews.show', $related->id) }}" class="related-item">
+                                            <div class="related-img">
+                                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($related->image) }}"
+                                                    alt="{{ $related->title }}">
+                                            </div>
+                                            <div class="related-content">
+                                                <span
+                                                    class="related-date">{{ \Carbon\Carbon::parse($related->created_at)->format('d M Y') }}</span>
+                                                <h4 class="related-title">{{ $related->title }}</h4>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endif
 
                     <div class="sidebar-widget" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
@@ -1262,11 +1293,16 @@
                         </div>
                         <div class="widget-content">
                             <div class="tags-container">
-                                <a href="{{ route('publicnews.index', ['topic' => 'Company']) }}" class="tag {{ $news->topic == 'Company' ? 'active' : '' }}">Company</a>
-                                <a href="{{ route('publicnews.index', ['topic' => 'Industry']) }}" class="tag {{ $news->topic == 'Industry' ? 'active' : '' }}">Industry</a>
-                                <a href="{{ route('publicnews.index', ['topic' => 'Maritime']) }}" class="tag {{ $news->topic == 'Maritime' ? 'active' : '' }}">Maritime</a>
-                                <a href="{{ route('publicnews.index', ['topic' => 'Events']) }}" class="tag {{ $news->topic == 'Events' ? 'active' : '' }}">Events</a>
-                                <a href="{{ route('publicnews.index', ['topic' => 'Updates']) }}" class="tag {{ $news->topic == 'Updates' ? 'active' : '' }}">Updates</a>
+                                <a href="{{ route('publicnews.index', ['topic' => 'Company']) }}"
+                                    class="tag {{ $news->topic == 'Company' ? 'active' : '' }}">Company</a>
+                                <a href="{{ route('publicnews.index', ['topic' => 'Industry']) }}"
+                                    class="tag {{ $news->topic == 'Industry' ? 'active' : '' }}">Industry</a>
+                                <a href="{{ route('publicnews.index', ['topic' => 'Maritime']) }}"
+                                    class="tag {{ $news->topic == 'Maritime' ? 'active' : '' }}">Maritime</a>
+                                <a href="{{ route('publicnews.index', ['topic' => 'Events']) }}"
+                                    class="tag {{ $news->topic == 'Events' ? 'active' : '' }}">Events</a>
+                                <a href="{{ route('publicnews.index', ['topic' => 'Updates']) }}"
+                                    class="tag {{ $news->topic == 'Updates' ? 'active' : '' }}">Updates</a>
                             </div>
                         </div>
                     </div>
@@ -1277,7 +1313,8 @@
                         </div>
                         <div class="widget-content">
                             <div class="contact-info">
-                                <p>For inquiries about our services or more information about PT. Oremus Bahari Mandiri, please don't hesitate to contact us.</p>
+                                <p>For inquiries about our services or more information about PT. Oremus Bahari Mandiri,
+                                    please don't hesitate to contact us.</p>
                                 <p><i class="fas fa-user me-2"></i>Mr. Alexander (PIC)</p>
                                 <p><i class="fas fa-phone me-2"></i>0313557115 (Office)</p>
                                 <p><i class="fas fa-envelope me-2"></i>commercial@oremus.co.id</p>
@@ -1303,56 +1340,74 @@
             </div>
 
             <div class="news-cards" style="padding-bottom: 80px;">
-                @foreach($latestNews->take(3) as $item)
-                <div class="news-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="{{ $loop->index * 100 }}">
-                    <div class="card-img">
-                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($item->image) }}" alt="{{ $item->title }}">
-                        <div class="card-date">
-                            <span class="card-date-day">{{ \Carbon\Carbon::parse($item->created_at)->format('d') }}</span>
-                            <span class="card-date-month">{{ \Carbon\Carbon::parse($item->created_at)->format('M') }}</span>
+                @foreach ($latestNews->take(3) as $item)
+                    <div class="news-card" data-aos="fade-up" data-aos-duration="1000"
+                        data-aos-delay="{{ $loop->index * 100 }}">
+                        <div class="card-img">
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($item->image) }}"
+                                alt="{{ $item->title }}">
+                            <div class="card-date">
+                                <span
+                                    class="card-date-day">{{ \Carbon\Carbon::parse($item->created_at)->format('d') }}</span>
+                                <span
+                                    class="card-date-month">{{ \Carbon\Carbon::parse($item->created_at)->format('M') }}</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-topic">{{ $item->topic }}</span>
+                            <h3 class="card-title">{{ $item->title }}</h3>
+                            <p class="card-excerpt">{{ Str::limit(strip_tags($item->news), 100) }}</p>
+                            <a href="{{ route('publicnews.show', $item->id) }}" class="card-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="card-content">
-                        <span class="card-topic">{{ $item->topic }}</span>
-                        <h3 class="card-title">{{ $item->title }}</h3>
-                        <p class="card-excerpt">{{ Str::limit(strip_tags($item->news), 100) }}</p>
-                        <a href="{{ route('publicnews.show', $item->id) }}" class="card-link">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
                 @endforeach
             </div>
         </div>
 
-         <!--Ship Animation -->
+        <!--Ship Animation -->
         <div class="ship-container">
-            <svg width="120" height="60" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M416 320H96C43.06 320 0 363.06 0 416V480H512V416C512 363.06 468.94 320 416 320Z" fill="#0A3D62" />
-                <path d="M512 416V480H0V416C0 363.06 43.06 320 96 320H416C468.94 320 512 363.06 512 416Z" fill="#0A3D62" />
+            <svg width="120" height="60" viewBox="0 0 512 512" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M416 320H96C43.06 320 0 363.06 0 416V480H512V416C512 363.06 468.94 320 416 320Z"
+                    fill="#0A3D62" />
+                <path d="M512 416V480H0V416C0 363.06 43.06 320 96 320H416C468.94 320 512 363.06 512 416Z"
+                    fill="#0A3D62" />
                 <path d="M400 192H240V96H400V192Z" fill="#3AB795" />
-                <path d="M400 96H240V64C240 46.33 254.33 32 272 32H368C385.67 32 400 46.33 400 64V96Z" fill="#A8D8FF" />
+                <path d="M400 96H240V64C240 46.33 254.33 32 272 32H368C385.67 32 400 46.33 400 64V96Z"
+                    fill="#A8D8FF" />
                 <path d="M400 192V416H240V192H400Z" fill="#0A3D62" />
-                <path d="M272 160C276.418 160 280 156.418 280 152C280 147.582 276.418 144 272 144C267.582 144 264 147.582 264 152C264 156.418 267.582 160 272 160Z" fill="white" />
-                <path d="M336 160C340.418 160 344 156.418 344 152C344 147.582 340.418 144 336 144C331.582 144 328 147.582 328 152C328 156.418 331.582 160 336 160Z" fill="white" />
+                <path
+                    d="M272 160C276.418 160 280 156.418 280 152C280 147.582 276.418 144 272 144C267.582 144 264 147.582 264 152C264 156.418 267.582 160 272 160Z"
+                    fill="white" />
+                <path
+                    d="M336 160C340.418 160 344 156.418 344 152C344 147.582 340.418 144 336 144C331.582 144 328 147.582 328 152C328 156.418 331.582 160 336 160Z"
+                    fill="white" />
             </svg>
         </div>
 
-         <!--Wave Animation -->
+        <!--Wave Animation -->
         <div class="wave-animation">
             <div class="wave wave-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" class="shape-fill"></path>
+                    <path
+                        d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                        class="shape-fill"></path>
                 </svg>
             </div>
             <div class="wave wave-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" class="shape-fill"></path>
+                    <path
+                        d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                        class="shape-fill"></path>
                 </svg>
             </div>
             <div class="wave wave-3">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" class="shape-fill"></path>
+                    <path
+                        d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                        class="shape-fill"></path>
                 </svg>
             </div>
         </div>
@@ -1361,20 +1416,28 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-wave">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" class="shape-fill"></path>
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                    class="shape-fill"></path>
             </svg>
         </div>
         <div class="container">
             <div class="row">
                 <!-- Company Logo & Description -->
                 <div class="col-lg-4 col-md-6 mb-5">
-                    <img src="{{ asset('/images/logo.png') }}" alt="PT. Oremus Bahari Mandiri Logo" class="mb-4" style="height: 60px;">
-                    <p>PT. Oremus Bahari Mandiri is your trusted partner in maritime logistics and ship agency services. We deliver excellence in every aspect of maritime operations across Indonesian ports.</p>
+                    <img src="{{ asset('/images/logo.png') }}" alt="PT. Oremus Bahari Mandiri Logo" class="mb-4"
+                        style="height: 60px;">
+                    <p>PT. Oremus Bahari Mandiri is your trusted partner in maritime logistics and ship agency services.
+                        We deliver excellence in every aspect of maritime operations across Indonesian ports.</p>
                     <div class="social-icons mt-4">
-                        <a href="https://www.facebook.com/p/PT-Oremus-Bahari-Mandiri-100047025746073/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.linkedin.com/company/pt-oremus-bahari-mandiri/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.instagram.com/oremusbaharimandiri/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/p/PT-Oremus-Bahari-Mandiri-100047025746073/"
+                            aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/pt-oremus-bahari-mandiri/" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/oremusbaharimandiri/" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
                     </div>
                 </div>
 
@@ -1409,12 +1472,18 @@
                 <div class="col-lg-2 col-md-6 mb-5">
                     <h4><i class="fas fa-cogs me-2"></i>Our Services</h4>
                     <ul class="footer-links list-unstyled">
-                        <li><a href="{{ route('landing') }}#services"><i class="fas fa-ship me-2"></i>Ship Handling</a></li>
-                        <li><a href="{{ route('landing') }}#services"><i class="fas fa-box me-2"></i>Provision Supply</a></li>
-                        <li><a href="{{ route('landing') }}#services"><i class="fas fa-ambulance me-2"></i>Medivac Operation</a></li>
-                        <li><a href="{{ route('landing') }}#services"><i class="fas fa-users me-2"></i>Crew Handling</a></li>
-                        <li><a href="{{ route('landing') }}#activities"><i class="fas fa-anchor me-2"></i>Cable Laying</a></li>
-                        <li><a href="{{ route('landing') }}#activities"><i class="fas fa-exchange-alt me-2"></i>Ship to Ship</a></li>
+                        <li><a href="{{ route('landing') }}#services"><i class="fas fa-ship me-2"></i>Ship
+                                Handling</a></li>
+                        <li><a href="{{ route('landing') }}#services"><i class="fas fa-box me-2"></i>Provision
+                                Supply</a></li>
+                        <li><a href="{{ route('landing') }}#services"><i class="fas fa-ambulance me-2"></i>Medivac
+                                Operation</a></li>
+                        <li><a href="{{ route('landing') }}#services"><i class="fas fa-users me-2"></i>Crew
+                                Handling</a></li>
+                        <li><a href="{{ route('landing') }}#activities"><i class="fas fa-anchor me-2"></i>Cable
+                                Laying</a></li>
+                        <li><a href="{{ route('landing') }}#activities"><i class="fas fa-exchange-alt me-2"></i>Ship
+                                to Ship</a></li>
                     </ul>
                 </div>
 
@@ -1460,12 +1529,15 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <p class="mb-0">&copy; {{ date('Y') }} PT. Oremus Bahari Mandiri. All Rights Reserved.</p>
+                        <p class="mb-0">&copy; {{ date('Y') }} PT. Oremus Bahari Mandiri. All Rights Reserved.
+                        </p>
                     </div>
                     <div class="col-md-6 text-md-end">
                         <p class="mb-0">
-                            <a href="#" style="color: var(--ocean-green); text-decoration: none;">Privacy Policy</a> |
-                            <a href="#" style="color: var(--ocean-green); text-decoration: none;">Terms of Service</a>
+                            <a href="#" style="color: var(--ocean-green); text-decoration: none;">Privacy
+                                Policy</a> |
+                            <a href="#" style="color: var(--ocean-green); text-decoration: none;">Terms of
+                                Service</a>
                         </p>
                     </div>
                 </div>
@@ -1515,7 +1587,8 @@
 
                 const targetId = this.getAttribute('href');
                 if (targetId.startsWith('#')) {
-                    e.preventDefault();const targetElement = document.querySelector(targetId);
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
                             top: targetElement.offsetTop - 80,
