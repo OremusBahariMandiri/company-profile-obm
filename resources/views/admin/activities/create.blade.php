@@ -94,11 +94,12 @@
                                 @php
                                     $categoryIcons = [
                                         'agency' => 'fa-ship',
-                                        'cable-laying' => 'fa-cable-car',
+                                        'cable-laying' => 'fa-tools',
                                         'ship-to-ship' => 'fa-exchange-alt',
                                         'provision-supply' => 'fa-box',
                                         'medivac' => 'fa-ambulance',
-                                        'crew-change' => 'fa-users'
+                                        'crew-change' => 'fa-users',
+                                        'oil-&-gas-support' => 'fa-oil-can'
                                     ];
                                     $categoryColors = [
                                         'agency' => 'primary',
@@ -106,7 +107,8 @@
                                         'ship-to-ship' => 'info',
                                         'provision-supply' => 'warning',
                                         'medivac' => 'danger',
-                                        'crew-change' => 'secondary'
+                                        'crew-change' => 'secondary',
+                                        'oil-&-gas-support' => 'dark'
                                     ];
                                 @endphp
                                 @foreach($categories as $key => $value)

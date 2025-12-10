@@ -250,7 +250,7 @@
     </section>
 
     <!-- News Section - Already Dynamic -->
-    {{-- <section class="section news-section" id="news">
+    <section class="section news-section" id="news">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="section-title">Latest News</h2>
@@ -261,7 +261,7 @@
                 @foreach ($latestNews as $news)
                     <div class="news-card">
                         <div class="news-image">
-                            <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}">
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($news->image) }}" alt="{{ $news->title }}">
                             <div class="news-date">
                                 <span class="day">{{ \Carbon\Carbon::parse($news->created_at)->format('d') }}</span>
                                 <span class="month">{{ \Carbon\Carbon::parse($news->created_at)->format('M') }}</span>
@@ -283,7 +283,7 @@
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 
     <!-- Team Section - Dynamic -->
     <section class="section team-section" id="team">

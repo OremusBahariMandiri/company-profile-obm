@@ -1073,6 +1073,7 @@
 
             .news-cards {
                 grid-template-columns: 1fr;
+
             }
 
             .more-news-header {
@@ -1162,29 +1163,29 @@
                     @if($imageCount == 1)
                         <!-- Single Image Layout -->
                         <div class="single-image-layout">
-                            <img src="{{ Storage::url($images[0]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="0">
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[0]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="0">
                         </div>
                     @elseif($imageCount == 2)
                         <!-- Two Images Layout -->
                         <div class="two-images-layout">
                             <div class="image-container">
-                                <img src="{{ Storage::url($images[0]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="0">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[0]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="0">
                             </div>
                             <div class="image-container">
-                                <img src="{{ Storage::url($images[1]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="1">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[1]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="1">
                             </div>
                         </div>
                     @elseif($imageCount == 3)
                         <!-- Three Images Layout -->
                         <div class="three-images-layout">
                             <div class="image-container main-image">
-                                <img src="{{ Storage::url($images[0]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="0">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[0]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="0">
                             </div>
                             <div class="image-container">
-                                <img src="{{ Storage::url($images[1]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="1">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[1]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="1">
                             </div>
                             <div class="image-container">
-                                <img src="{{ Storage::url($images[2]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="2">
+                                <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($images[2]) }}" alt="{{ $news->title }}" class="gallery-image" data-index="2">
                             </div>
                         </div>
                     @endif
@@ -1242,7 +1243,7 @@
                                 @foreach($relatedNews as $related)
                                 <a href="{{ route('publicnews.show', $related->id) }}" class="related-item">
                                     <div class="related-img">
-                                        <img src="{{ Storage::url($related->image) }}" alt="{{ $related->title }}">
+                                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($related->image) }}" alt="{{ $related->title }}">
                                     </div>
                                     <div class="related-content">
                                         <span class="related-date">{{ \Carbon\Carbon::parse($related->created_at)->format('d M Y') }}</span>
@@ -1301,11 +1302,11 @@
                 </a>
             </div>
 
-            <div class="news-cards">
+            <div class="news-cards" style="padding-bottom: 80px;">
                 @foreach($latestNews->take(3) as $item)
                 <div class="news-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="{{ $loop->index * 100 }}">
                     <div class="card-img">
-                        <img src="{{ Storage::url($item->image) }}" alt="{{ $item->title }}">
+                        <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($item->image) }}" alt="{{ $item->title }}">
                         <div class="card-date">
                             <span class="card-date-day">{{ \Carbon\Carbon::parse($item->created_at)->format('d') }}</span>
                             <span class="card-date-month">{{ \Carbon\Carbon::parse($item->created_at)->format('M') }}</span>
@@ -1324,7 +1325,7 @@
             </div>
         </div>
 
-        <!-- Ship Animation -->
+         <!--Ship Animation -->
         <div class="ship-container">
             <svg width="120" height="60" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M416 320H96C43.06 320 0 363.06 0 416V480H512V416C512 363.06 468.94 320 416 320Z" fill="#0A3D62" />
@@ -1337,7 +1338,7 @@
             </svg>
         </div>
 
-        <!-- Wave Animation -->
+         <!--Wave Animation -->
         <div class="wave-animation">
             <div class="wave wave-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

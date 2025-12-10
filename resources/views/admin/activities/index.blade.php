@@ -44,7 +44,7 @@
         <div class="col-md-2">
             <div class="card bg-success text-white">
                 <div class="card-body text-center">
-                    <i class="fas fa-cable-car fa-2x mb-2"></i>
+                    <i class="fas fa-tools fa-2x mb-2"></i>
                     <h6>Cable Laying</h6>
                     <h4>{{ $groupedActivities->get('cable-laying', collect())->count() }}</h4>
                 </div>
@@ -83,6 +83,15 @@
                     <i class="fas fa-users fa-2x mb-2"></i>
                     <h6>Crew Change</h6>
                     <h4>{{ $groupedActivities->get('crew-change', collect())->count() }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mt-2">
+            <div class="card bg-dark text-white">
+                <div class="card-body text-center">
+                    <i class="fas fa-oil-can fa-2x mb-2"></i>
+                    <h6>Oil & Gas Support</h6>
+                    <h4>{{ $groupedActivities->get('oil-&-gas-support', collect())->count() }}</h4>
                 </div>
             </div>
         </div>
@@ -134,7 +143,8 @@
                                             'ship-to-ship' => 'info',
                                             'provision-supply' => 'warning',
                                             'medivac' => 'danger',
-                                            'crew-change' => 'secondary'
+                                            'crew-change' => 'secondary',
+                                            'oil-&-gas-support' => 'dark',
                                         ];
                                         $color = $categoryColors[$activity->category] ?? 'secondary';
                                     @endphp

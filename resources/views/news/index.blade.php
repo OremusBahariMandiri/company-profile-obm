@@ -782,7 +782,7 @@
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
                     <div class="news-card">
                         <div class="news-image">
-                            <img src="{{ Storage::url($item->image) }}" alt="{{ $item->title }}">
+                            <img src="{{ \App\Helpers\StorageHelper::getStorageUrl($item->image) }}" alt="{{ $item->title }}">
                             <div class="news-date">
                                 <span class="day">{{ \Carbon\Carbon::parse($item->created_at)->format('d') }}</span>
                                 <span class="month">{{ \Carbon\Carbon::parse($item->created_at)->format('M') }}</span>
@@ -817,36 +817,11 @@
         </div>
 
         <!-- Ship Animation -->
-        <div class="ship-container">
-            <svg width="120" height="60" viewBox="0 0 512 512" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M416 320H96C43.06 320 0 363.06 0 416V480H512V416C512 363.06 468.94 320 416 320Z"
-                    fill="#0A3D62" />
-                <path d="M512 416V480H0V416C0 363.06 43.06 320 96 320H416C468.94 320 512 363.06 512 416Z"
-                    fill="#0A3D62" />
-                <path d="M400 192H240V96H400V192Z" fill="#3AB795" />
-                <path d="M400 96H240V64C240 46.33 254.33 32 272 32H368C385.67 32 400 46.33 400 64V96Z" fill="#A8D8FF" />
-                <path d="M400 192V416H240V192H400Z" fill="#0A3D62" />
-                <path
-                    d="M272 160C276.418 160 280 156.418 280 152C280 147.582 276.418 144 272 144C267.582 144 264 147.582 264 152C264 156.418 267.582 160 272 160Z"
-                    fill="white" />
-                <path
-                    d="M336 160C340.418 160 344 156.418 344 152C344 147.582 340.418 144 336 144C331.582 144 328 147.582 328 152C328 156.418 331.582 160 336 160Z"
-                    fill="white" />
-            </svg>
-        </div>
+
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-wave">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path
-                    d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-                    class="shape-fill"></path>
-            </svg>
-        </div>
         <div class="container">
             <div class="row">
                 <!-- Company Logo & Description -->
