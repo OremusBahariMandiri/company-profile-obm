@@ -585,7 +585,7 @@ class LandingPageController extends Controller
             'provision-supply' => [],
             'medivac' => [],
             'crew-change' => [],
-            'oil-&-gas-support' => []
+            'oil-gas-support' => []
         ];
 
         // Group activities by category
@@ -626,7 +626,7 @@ class LandingPageController extends Controller
                 ['image' => 'images/activities/cc1.jpg', 'title' => 'International Crew Change Services'],
                 ['image' => 'images/activities/cc2.jpg', 'title' => 'Crew Transportation & Logistics']
             ],
-            'oil-&-gas-support' => [
+            'oil-gas-support' => [
                 ['image' => 'images/activities/cc1.jpg', 'title' => 'International Crew Change Services'],
                 ['image' => 'images/activities/cc2.jpg', 'title' => 'Crew Transportation & Logistics']
             ]

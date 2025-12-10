@@ -34,7 +34,7 @@ class OurActivityController extends Controller
             'provision-supply' => 'Provision Supply',
             'medivac' => 'Medivac Operation',
             'crew-change' => 'Crew Change',
-            'oil-&-gas-support' => 'Oil & Gas Support'
+            'oil-gas-support' => 'Oil & Gas Support'
         ];
 
         return view('admin.activities.create', compact('categories'));
@@ -47,7 +47,7 @@ class OurActivityController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'category' => 'required|string|in:agency,cable-laying,ship-to-ship,provision-supply,medivac,crew-change,oil-&-gas-support',
+            'category' => 'required|string|in:agency,cable-laying,ship-to-ship,provision-supply,medivac,crew-change,oil-gas-support',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:5048',
         ]);
 
@@ -78,7 +78,7 @@ class OurActivityController extends Controller
             'provision-supply' => 'Provision Supply',
             'medivac' => 'Medivac Operation',
             'crew-change' => 'Crew Change',
-            'oil-&-gas-support' => 'Oil & Gas Support'
+            'oil-gas-support' => 'Oil & Gas Support'
         ];
 
         return view('admin.activities.show', compact('activity', 'categories'));
@@ -96,7 +96,7 @@ class OurActivityController extends Controller
             'provision-supply' => 'Provision Supply',
             'medivac' => 'Medivac Operation',
             'crew-change' => 'Crew Change',
-            'oil-&-gas-support' => 'Oil & Gas Support'
+            'oil-gas-support' => 'Oil & Gas Support'
         ];
 
         return view('admin.activities.edit', compact('activity', 'categories'));
@@ -109,7 +109,7 @@ class OurActivityController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'category' => 'required|string|in:agency,cable-laying,ship-to-ship,provision-supply,medivac,crew-change,oil-&-gas-support',
+            'category' => 'required|string|in:agency,cable-laying,ship-to-ship,provision-supply,medivac,crew-change,oil-gas-support',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5048',
         ]);
 
@@ -164,7 +164,7 @@ class OurActivityController extends Controller
             'provision-supply' => 'Provision Supply',
             'medivac' => 'Medivac Operation',
             'crew-change' => 'Crew Change',
-            'oil-&-gas-support' => 'Oil & Gas Support'
+            'oil-gas-support' => 'Oil & Gas Support'
         ];
 
         return $categories[$category] ?? $category;

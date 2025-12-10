@@ -509,16 +509,18 @@
                         type="button" role="tab" aria-controls="crew-change" aria-selected="false">Crew
                         Change</button>
                 </li>
+
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="oil-gas-support-tab" data-bs-toggle="pill"
-                        data-bs-target="#oil-&-gas-support" type="button" role="tab"
-                        aria-controls="oil-&-gas-support" aria-selected="false">Oil & Gas Support</button>
+                            data-bs-target="#oil-gas-support"
+                            type="button" role="tab" aria-controls="oil-gas-support"
+                            aria-selected="false">Oil & Gas Support</button>
                 </li>
             </ul>
 
             <!-- Tab Content -->
             <div class="tab-content" id="activitiesTabContent">
-                @foreach (['agency', 'cable-laying', 'ship-to-ship', 'provision-supply', 'medivac', 'crew-change', 'oil-&-gas-support'] as $index => $category)
+                @foreach (['agency', 'cable-laying', 'ship-to-ship', 'provision-supply', 'medivac', 'crew-change', 'oil-gas-support'] as $index => $category)
                     <div class="tab-pane fade {{ $index === 0 ? 'show active' : '' }}" id="{{ $category }}"
                         role="tabpanel" aria-labelledby="{{ $category }}-tab">
                         <div class="activity-gallery">
