@@ -518,7 +518,7 @@
 
             <!-- Tab Content -->
             <div class="tab-content" id="activitiesTabContent">
-                @foreach (['agency', 'cable-laying', 'ship-to-ship', 'provision-supply', 'medivac', 'crew-change'] as $index => $category)
+                @foreach (['agency', 'cable-laying', 'ship-to-ship', 'provision-supply', 'medivac', 'crew-change', 'oil-&-gas-support'] as $index => $category)
                     <div class="tab-pane fade {{ $index === 0 ? 'show active' : '' }}" id="{{ $category }}"
                         role="tabpanel" aria-labelledby="{{ $category }}-tab">
                         <div class="activity-gallery">
